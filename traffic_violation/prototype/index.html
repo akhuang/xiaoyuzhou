@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随手拍违章举报 - 原型</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .prototype-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .frame-container {
+            display: inline-block;
+        }
+        
+        .frame-title {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        iframe {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* 防止滚动条 */
+            width: 480px; /* 增加宽度，确保内容完全显示 */
+        }
+        
+        .description {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>随手拍违章举报 - 高保真原型</h1>
+    
+    <div class="description">
+        <h2>App功能介绍</h2>
+        <p>这款应用专为关注交通安全的车主设计，让您能够随时随地举报交通违法行为，共同维护道路交通秩序。</p>
+        <ul>
+            <li><strong>快速举报功能：</strong> 支持连续拍摄违法车辆照片和车牌特写，一键完成举报</li>
+            <li><strong>自动定位：</strong> 自动记录违法发生的准确位置和时间</li>
+            <li><strong>AI智能识别：</strong> 调用大模型API自动识别车牌号码和违法类型</li>
+            <li><strong>举报记录：</strong> 查看已提交的举报记录及处理状态</li>
+            <li><strong>隐私保护：</strong> 举报信息加密传输，保障个人信息安全</li>
+        </ul>
+        
+        <p><em>注意：这是原型效果展示，图片为占位图，实际使用时需通过相机拍摄实际违法行为。</em></p>
+    </div>
+    
+    <div class="prototype-container">
+        <div class="frame-container">
+            <div class="frame-title">举报抓拍</div>
+            <iframe src="capture.html" height="956" scrolling="no"></iframe>
+        </div>
+        
+        <div class="frame-container">
+            <div class="frame-title">举报记录</div>
+            <iframe src="list.html" height="956" scrolling="no"></iframe>
+        </div>
+    </div>
+</body>
+</html>
