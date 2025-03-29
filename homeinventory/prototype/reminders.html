@@ -13,6 +13,92 @@
     <!-- iOS Modern Theme -->
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
+    <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
+        
+        /* 标题文字大小优化 */
+        .ios-header-large h1 {
+            font-size: 32px; /* 减小标题字号 */
+        }
+        
+        /* 减小卡片标题字号 */
+        .ios-card-title {
+            font-size: 18px; /* 原为20px */
+        }
+        
+        /* 优化分段控制器 */
+        .ios-segment-control {
+            display: flex;
+            background-color: var(--ios-bg-secondary);
+            border-radius: 10px;
+            padding: 4px;
+            margin: 16px 0;
+        }
+        
+        .ios-segment-item {
+            flex: 1;
+            text-align: center;
+            padding: 7px 0;
+            font-size: 13px; /* 减小标签字号 */
+            font-weight: 500;
+            color: var(--ios-text-secondary);
+            position: relative;
+            border-radius: 8px;
+        }
+        
+        .ios-segment-item.active {
+            background-color: white;
+            color: var(--ios-blue);
+            box-shadow: var(--ios-shadow-sm);
+        }
+        
+        /* 改进卡片组件间距和阴影 */
+        .ios-card {
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
+        }
+        
+        /* 优化提醒项目样式 */
+        .ios-reminder-item {
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background-color: rgba(255,255,255,0.8);
+            border-left: 3px solid var(--ios-blue);
+        }
+        
+        .ios-reminder-title {
+            font-size: 15px; /* 减小字体大小 */
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .ios-reminder-detail {
+            font-size: 13px; /* 减小字体大小 */
+            color: rgba(0, 0, 0, 0.65); /* 提高对比度 */
+        }
+        
+        .ios-reminder-meta {
+            font-size: 12px;
+            color: var(--ios-text-tertiary);
+            margin-top: 4px;
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button {
+            outline: none;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 <body class="ios-modern">
     <div class="ios-frame">

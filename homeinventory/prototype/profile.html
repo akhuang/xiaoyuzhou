@@ -15,6 +15,109 @@
     <!-- iOS Modern Theme -->
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
+    <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
+        
+        /* 标题文字大小优化 */
+        .ios-header-large h1 {
+            font-size: 32px; /* 减小标题字号 */
+        }
+        
+        /* 减小卡片标题字号 */
+        .ios-card-title {
+            font-size: 18px; /* 原为20px */
+        }
+        
+        /* 改进卡片组件间距和阴影 */
+        .ios-card {
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
+        }
+        
+        /* 用户资料优化 */
+        .ios-profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 0; /* 减小内边距 */
+        }
+        
+        .ios-avatar {
+            width: 75px; /* 减小头像尺寸 */
+            height: 75px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        }
+        
+        .ios-username {
+            font-size: 19px; /* 减小字号 */
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .ios-user-info {
+            font-size: 13px; /* 减小字号 */
+            color: var(--ios-text-tertiary);
+            margin-bottom: 4px;
+        }
+        
+        /* 菜单项优化 */
+        .ios-menu-item {
+            padding: 12px 16px; /* 调整内边距 */
+        }
+        
+        .ios-menu-title {
+            font-size: 15px; /* 减小字体大小 */
+        }
+        
+        .ios-menu-detail {
+            font-size: 14px; /* 减小字体大小 */
+            color: rgba(0, 0, 0, 0.65); /* 提高对比度 */
+        }
+        
+        /* 菜单图标尺寸 */
+        .ios-menu-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 14px;
+        }
+        
+        /* 按钮样式优化 */
+        .ios-button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+        
+        .ios-button-danger {
+            font-size: 15px;
+        }
+        
+        /* 小型标签优化 */
+        .ios-tag {
+            font-size: 11px; /* 减小字体 */
+            padding: 2px 8px; /* 调整内边距 */
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button {
+            outline: none;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+        
+        /* 底部版本信息优化 */
+        .text-xs {
+            font-size: 0.7rem; /* 进一步减小 */
+        }
+    </style>
 </head>
 <body class="ios-modern">
     <div class="ios-frame">

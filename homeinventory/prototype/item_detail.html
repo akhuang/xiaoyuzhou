@@ -16,18 +16,24 @@
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
     <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
         
         /* 特定于此页面的样式，无法通过共享样式处理的 */
         .ios-item-image-slider {
-            height: 300px;
-            width: calc(100% - 32px); /* 减少宽度，为左右边距留出空间 */
+            height: 280px; /* 减小高度 */
+            width: calc(100% - 32px);
             position: relative;
             background-size: cover;
             background-position: center;
             border-radius: 16px;
-            margin: 24px 16px; /* 调整为上右下左四个方向都有边距 */
+            margin: 24px 16px;
             overflow: hidden;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* 微调阴影 */
         }
         
         .mb-20 {
@@ -49,9 +55,9 @@
         .ios-quantity-badge {
             background-color: var(--ios-blue);
             color: white;
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 14px;
+            padding: 4px 10px; /* 减小内边距 */
+            border-radius: 14px; /* 更小的圆角 */
+            font-size: 13px; /* 减小字体大小 */
             font-weight: 500;
         }
         
@@ -66,17 +72,17 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 12px 0;
+            padding: 10px 0; /* 减小内边距 */
         }
         
         .ios-detail-action i {
-            font-size: 22px;
-            margin-bottom: 6px;
+            font-size: 20px; /* 减小图标大小 */
+            margin-bottom: 5px;
             color: var(--ios-blue);
         }
         
         .ios-detail-action span {
-            font-size: 12px;
+            font-size: 11px; /* 减小字体 */
             color: var(--ios-text-secondary);
         }
         
@@ -92,18 +98,18 @@
         }
         
         .ios-consumption-date {
-            width: 50px;
+            width: 48px; /* 减小宽度 */
             text-align: center;
             margin-right: 15px;
         }
         
         .ios-consumption-day {
-            font-size: 20px;
+            font-size: 18px; /* 减小字号 */
             font-weight: bold;
         }
         
         .ios-consumption-month {
-            font-size: 12px;
+            font-size: 11px; /* 减小字号 */
             color: var(--ios-text-tertiary);
         }
         
@@ -124,7 +130,7 @@
         }
         
         .ios-similar-item {
-            min-width: 120px;
+            min-width: 110px; /* 减小宽度 */
             border-radius: 12px;
             overflow: hidden;
             background-color: var(--ios-bg-tertiary);
@@ -132,30 +138,30 @@
         }
         
         .ios-similar-item-image {
-            height: 100px;
+            height: 90px; /* 减小高度 */
             background-size: cover;
             background-position: center;
         }
         
         .ios-similar-item-name {
-            font-size: 14px;
+            font-size: 13px; /* 减小字号 */
             font-weight: 500;
             padding: 8px 10px 2px;
         }
         
         .ios-similar-item-location {
-            font-size: 12px;
+            font-size: 11px; /* 减小字号 */
             color: var(--ios-text-tertiary);
             padding: 0 10px 8px;
         }
         
         .item-title {
-            font-size: 24px;
+            font-size: 22px; /* 减小标题 */
             font-weight: 600;
         }
         
         .item-brand {
-            font-size: 14px; 
+            font-size: 13px; /* 减小字体大小 */
             color: var(--ios-text-tertiary);
         }
         
@@ -166,7 +172,7 @@
         }
         
         .item-description {
-            font-size: 15px; 
+            font-size: 14px; /* 减小字体大小 */
             line-height: 1.5; 
             color: var(--ios-text-secondary);
         }
@@ -176,20 +182,20 @@
         }
         
         .purchase-price {
-            font-size: 14px;
+            font-size: 13px; /* 减小字体大小 */
         }
         
         .purchase-store {
-            font-size: 12px; 
+            font-size: 11px; /* 减小字体大小 */
             color: var(--ios-text-tertiary);
         }
         
         .consumption-detail {
-            font-size: 15px;
+            font-size: 14px; /* 减小字体大小 */
         }
         
         .consumption-time {
-            font-size: 13px; 
+            font-size: 12px; /* 减小字体大小 */
             color: var(--ios-text-tertiary);
         }
         
@@ -199,21 +205,43 @@
             width: 100%;
         }
         
-        /* Make sure all cards have proper rounded corners */
+        /* 改进卡片组件间距和阴影 */
         .ios-card {
             border-radius: 16px !important;
             overflow: hidden;
-            margin-bottom: 16px; /* 增加卡片之间的间距 */
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03); /* 轻微阴影增强视觉效果 */
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
         }
-
+        
+        /* 减小菜单项内的文字大小 */
+        .ios-menu-title {
+            font-size: 15px; /* 减小字体大小 */
+        }
+        
+        .ios-menu-detail {
+            font-size: 14px; /* 减小字体大小 */
+        }
+        
+        /* 调整菜单项图标尺寸 */
+        .ios-menu-icon {
+            width: 30px;
+            height: 30px;
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button {
+            outline: none;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+        
         /* 调整顶部标题与内容的间距 */
         .ios-header-large {
-            margin-bottom: 16px; /* 确保标题与图片滑块间有足够间距 */
+            margin-bottom: 12px; /* 确保标题与图片滑块间有足够间距 */
         }
-
- 
- 
     </style>
 </head>
 <body class="ios-modern">

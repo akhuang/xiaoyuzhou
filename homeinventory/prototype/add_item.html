@@ -15,6 +15,88 @@
     <!-- iOS Modern Theme -->
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
+    <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
+        
+        /* 标题文字大小优化 */
+        .ios-header-large h1 {
+            font-size: 32px; /* 减小标题字号 */
+        }
+        
+        /* 改进卡片组件间距和阴影 */
+        .ios-card {
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
+        }
+        
+        /* 表单字段优化 */
+        .ios-label {
+            font-size: 14px; /* 减小标签字号 */
+            margin-bottom: 5px; /* 减小底部边距 */
+        }
+        
+        .ios-input {
+            font-size: 15px; /* 减小输入框字号 */
+            padding: 10px 15px; /* 减小内边距 */
+        }
+        
+        /* 分段控制器优化 */
+        .ios-segment-item {
+            font-size: 13px; /* 减小字号 */
+            padding: 7px 0;  /* 减小内边距 */
+        }
+        
+        /* 配置文件头部优化 */
+        .ios-profile-header {
+            padding: 10px 0; /* 减小内边距 */
+        }
+        
+        .ios-avatar {
+            width: 75px; /* 减小头像尺寸 */
+            height: 75px;
+            margin-bottom: 8px;
+        }
+        
+        .ios-user-info {
+            font-size: 13px; /* 减小字号 */
+            color: var(--ios-text-tertiary);
+        }
+        
+        /* 按钮样式优化 */
+        .ios-button, .ios-button-primary {
+            font-size: 15px; /* 减小字号 */
+            padding: 10px 16px; /* 减小内边距 */
+        }
+        
+        /* 文本域样式 */
+        .ios-textarea {
+            min-height: 80px; /* 减小高度 */
+        }
+        
+        /* 表单间距优化 */
+        .ios-form-group {
+            margin-bottom: 16px; /* 减小底部边距 */
+        }
+        
+        .ios-form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button, input, select, textarea {
+            outline: none;
+        }
+        
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+    </style>
 </head>
 <body class="ios-modern">
     <div class="ios-frame">

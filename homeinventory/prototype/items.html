@@ -15,6 +15,93 @@
     <!-- iOS Modern Theme -->
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
+    <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
+        
+        /* 标题文字大小优化 */
+        .ios-header-large h1 {
+            font-size: 32px; /* 减小标题字号 */
+        }
+        
+        /* 减小卡片标题字号 */
+        .ios-card-title {
+            font-size: 18px; /* 原为20px */
+        }
+        
+        /* 优化分段控制器 */
+        .ios-segment-item {
+            font-size: 13px; /* 减小标签字号 */
+            padding: 7px 12px; /* 微调内边距 */
+        }
+        
+        /* 改进卡片组件间距和阴影 */
+        .ios-card {
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
+        }
+        
+        /* 优化项目列表样式 */
+        .ios-item-card-horizontal {
+            padding: 11px; /* 减小内边距 */
+        }
+        
+        .ios-item-title {
+            font-size: 15px; /* 减小字体大小 */
+        }
+        
+        .ios-item-subtitle {
+            font-size: 13px;
+        }
+        
+        .ios-item-meta {
+            font-size: 11px;
+        }
+        
+        /* 预警信息优化 */
+        .ios-alert {
+            padding: 13px; /* 调整内边距 */
+        }
+        
+        .ios-alert-title {
+            font-size: 14px; /* 减小标题大小 */
+        }
+        
+        .ios-alert-message {
+            font-size: 12px; /* 减小内容大小 */
+            color: rgba(0, 0, 0, 0.65); /* 提高对比度 */
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button {
+            outline: none;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+        
+        /* 提高文本对比度 */
+        .ios-item-meta {
+            color: rgba(0, 0, 0, 0.65); /* 提高对比度 */
+        }
+        
+        /* 分类标签优化 */
+        .ios-tag {
+            font-size: 11px; /* 减小字体 */
+            padding: 2px 8px; /* 调整内边距 */
+        }
+        
+        /* 增强视觉层次感 */
+        .ios-menu-item {
+            padding: 10px 16px; /* 原始可能为12px 16px，调整间距 */
+        }
+    </style>
 </head>
 <body class="ios-modern">
     <div class="ios-frame">

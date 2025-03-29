@@ -15,6 +15,94 @@
     <!-- iOS Modern Theme -->
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
+    <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
+        
+        /* 标题文字大小优化 */
+        .ios-header-large h1 {
+            font-size: 32px; /* 减小标题字号 */
+        }
+        
+        /* 减小卡片标题字号 */
+        .ios-card-title {
+            font-size: 18px; /* 原为20px */
+        }
+        
+        /* 改进卡片组件间距和阴影 */
+        .ios-card {
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
+        }
+        
+        /* 优化分段控制器 */
+        .ios-segment-item {
+            font-size: 13px; /* 减小标签字号 */
+            padding: 7px 12px; /* 微调内边距 */
+        }
+        
+        /* 优化菜单项样式 */
+        .ios-menu-item {
+            padding: 11px 16px; /* 调整内边距 */
+        }
+        
+        .ios-menu-title {
+            font-size: 15px; /* 减小字体大小 */
+        }
+        
+        .ios-menu-item-detail {
+            padding-top: 2px;
+            padding-bottom: 8px;
+        }
+        
+        .ios-item-detail {
+            font-size: 13px; /* 减小字体大小 */
+            color: rgba(0, 0, 0, 0.65); /* 提高对比度 */
+        }
+        
+        /* 优化图标尺寸 */
+        .ios-checkbox-unchecked, .ios-checkbox-checked {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button {
+            outline: none;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+        
+        /* 优化浮动操作按钮 */
+        .ios-fab {
+            width: 54px; /* 更小的FAB尺寸 */
+            height: 54px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15); /* 微妙阴影 */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* 平滑过渡 */
+        }
+        
+        .ios-fab:active {
+            transform: scale(0.94); /* 点击反馈 */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        }
+        
+        /* 完成项目文字风格 */
+        .ios-item-completed {
+            color: var(--ios-text-tertiary);
+        }
+        
+        /* 改进卡片头部样式 */
+        .ios-card-header {
+            padding: 14px 16px 6px; /* 调整内边距 */
+        }
+    </style>
 </head>
 <body class="ios-modern">
     <div class="ios-frame">

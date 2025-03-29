@@ -16,18 +16,32 @@
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
     <style>
+        /* Dynamic Island优化 - 缩小尺寸避免遮挡右侧元素 */
+        .dynamic-island {
+            width: 95px; /* 减小宽度 */
+            height: 31px; /* 减小高度 */
+            top: 11px;   /* 调整顶部位置 */
+        }
+        
         /* 修改库存概览布局 */
         .ios-stats-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 改为每行2个 */
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr); /* 每行2个 */
+            gap: 14px; /* 增加间距提高视觉层次感 */
+            margin-top: 8px; /* 调整上边距 */
         }
         
         .ios-stat-card {
             display: flex;
             align-items: center;
-            padding: 12px;
-            border-radius: 12px;
+            padding: 14px; /* 增加内边距 */
+            border-radius: 14px; /* 增大圆角 */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* 微妙阴影增强层次感 */
+            transition: transform 0.15s ease; /* 添加交互动效 */
+        }
+        
+        .ios-stat-card:active {
+            transform: scale(0.98); /* 点击反馈效果 */
         }
         
         .ios-stat-icon {
@@ -46,13 +60,44 @@
         
         .ios-stat-value {
             font-weight: 600;
-            font-size: 18px;
+            font-size: 17px; /* 调小字体大小 */
             margin-bottom: 2px;
+            line-height: 1.1; /* 改进行高 */
         }
         
         .ios-stat-label {
-            font-size: 12px;
-            color: rgba(0, 0, 0, 0.6);
+            font-size: 11px; /* 减小字体大小 */
+            color: var(--ios-text-tertiary); /* 使用iOS变量提高一致性 */
+        }
+        
+        /* 改进卡片组件间距和阴影 */
+        .ios-card {
+            margin-bottom: 16px; /* 增加卡片间距 */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); /* 优化阴影效果 */
+        }
+        
+        /* 优化项目列表，减小字体调整间距 */
+        .ios-item-title {
+            font-size: 15px; /* 减小字体大小 */
+        }
+        
+        .ios-item-subtitle {
+            font-size: 13px;
+        }
+        
+        .ios-item-meta {
+            font-size: 11px;
+        }
+        
+        /* 分类图标和文字优化 */
+        .ios-category-name {
+            font-size: 13px;
+            margin-top: 2px;
+            margin-bottom: 1px;
+        }
+        
+        .ios-category-count {
+            font-size: 11px;
         }
         
         /* 防止标题折行 */
@@ -61,6 +106,26 @@
             overflow: hidden;
             text-overflow: ellipsis;
             width: 100%;
+            font-size: 32px; /* 调小标题字体 */
+        }
+        
+        .ios-header-large .ios-subheader {
+            font-size: 14px; /* 调小副标题字体 */
+        }
+        
+        /* 增加辅助功能支持 */
+        a, button {
+            outline: none;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--ios-blue);
+            outline-offset: 2px;
+        }
+        
+        /* 提高文本对比度 - WCAG AAA标准 */
+        .ios-alert-message, .ios-item-meta {
+            color: rgba(0, 0, 0, 0.65); /* 提高对比度 */
         }
     </style>
 </head>
