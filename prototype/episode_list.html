@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宇宙播客 - 剧集列表</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/transitions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .content {
+            padding-bottom: 70px;
+        }
+        
+        .episode-list-item {
+            display: flex;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.15s ease;
+        }
+        
+        .episode-list-item:active {
+            background-color: rgba(0,0,0,0.03);
+        }
+        
+        .episode-list-cover {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-right: 16px;
+            object-fit: cover;
+            box-shadow: var(--shadow-small);
+        }
+        
+        .episode-list-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .episode-list-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .episode-list-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        
+        .episode-list-date {
+            white-space: nowrap;
+        }
+        
+        .episode-list-duration {
+            margin-right: 16px;
+            white-space: nowrap;
+        }
+        
+        .episodes-sort-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 16px 8px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+        
+        .search-bar {
+            background-color: rgba(142, 142, 147, 0.12);
+            border-radius: 10px;
+            padding: 8px 16px;
+            margin: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-bar i {
+            margin-right: 8px;
+            color: var(--text-secondary);
+        }
+        
+        .search-bar input {
+            border: none;
+            background: transparent;
+            flex: 1;
+            font-size: 15px;
+            outline: none;
+            color: var(--text-primary);
+        }
+        
+        .search-bar input::placeholder {
+            color: var(--text-tertiary);
+        }
+        
+        .pill-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            margin-right: 8px;
+        }
+        
+        .pill-active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .pill-inactive {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--text-secondary);
+        }
+        
+        .current-playing-indicator {
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .current-playing-indicator i {
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        
+        .playing-animation {
+            display: inline-flex;
+            align-items: center;
+            height: 14px;
+        }
+        
+        .playing-bar {
+            width: 2px;
+            height: 100%;
+            margin: 0 1px;
+            background-color: var(--primary-color);
+            animation: sound 0.8s infinite alternate;
+            border-radius: 1px;
+        }
+        
+        .playing-bar:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .playing-bar:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes sound {
+            0% { height: 30%; }
+            100% { height: 100%; }
+        }
+    </style>
+</head>
+<body class="can-go-back">
+    <!-- 添加滑动手势指示器 -->
+    <div class="edge-swipe-indicator"></div>
+    
+    <!-- 顶部状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-left">9:41</div>
+        <div class="status-bar-center"></div>
+        <div class="status-bar-right">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi" style="margin-left: 6px;"></i>
+            <i class="fas fa-battery-full" style="margin-left: 6px;"></i>
+        </div>
+    </div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 返回按钮 -->
+        <div class="back-button" data-nav-back>
+            <i class="fas fa-chevron-left"></i>
+            <span>返回</span>
+        </div>
+        
+        <h1 style="font-size: 24px; margin: 0 0 20px 16px;" id="podcast-title">商业内幕</h1>
+        
+        <!-- 搜索框 -->
+        <div class="search-bar touch-feedback">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="搜索剧集" id="search-input">
+        </div>
+        
+        <!-- 分类筛选 -->
+        <div style="padding: 0 16px; margin-bottom: 16px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;">
+            <div class="pill-button pill-active" data-filter="all">全部剧集</div>
+            <div class="pill-button pill-inactive" data-filter="downloaded">已下载</div>
+            <div class="pill-button pill-inactive" data-filter="favorite">收藏</div>
+            <div class="pill-button pill-inactive" data-filter="started">已开始播放</div>
+            <div class="pill-button pill-inactive" data-filter="unplayed">未播放</div>
+        </div>
+        
+        <!-- 排序控制 -->
+        <div class="episodes-sort-bar">
+            <span style="font-weight: 500;">共36集</span>
+            <div class="touch-feedback" style="display: flex; align-items: center;" id="sort-btn">
+                <i class="fas fa-sort-amount-down" style="margin-right: 6px;"></i>
+                <span style="font-size: 14px;">最新</span>
+            </div>
+        </div>
+        
+        <!-- 剧集列表 -->
+        <div class="episode-list">
+            <!-- 当前播放的剧集 -->
+            <div class="episode-list-item touch-feedback" data-episode-id="1" data-nav-to="player.html" data-nav-data='{"episodeId":"1","title":"数字化转型的关键因素","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">数字化转型的关键因素</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        在这一集中，我们与多位数字化转型专家探讨了企业如何有效地实施数字化战略...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div class="current-playing-indicator">
+                            <div class="playing-animation">
+                                <div class="playing-bar"></div>
+                                <div class="playing-bar"></div>
+                                <div class="playing-bar"></div>
+                            </div>
+                            <span style="margin-left: 6px;">正在播放</span>
+                        </div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">36分钟</span>
+                            <span class="episode-list-date">2025/03/26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 其他剧集 -->
+            <div class="episode-list-item touch-feedback" data-episode-id="2" data-nav-to="player.html" data-nav-data='{"episodeId":"2","title":"数据驱动的决策模型","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">数据驱动的决策模型</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        我们邀请了数据科学家和企业决策者，讨论如何利用大数据和AI技术来优化业务流程...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div>
+                            <span class="episode-list-progress" style="color: var(--primary-color);">已播放 50%</span>
+                        </div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">42分钟</span>
+                            <span class="episode-list-date">2025/03/19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="episode-list-item touch-feedback" data-episode-id="3" data-nav-to="player.html" data-nav-data='{"episodeId":"3","title":"远程工作的未来趋势","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">远程工作的未来趋势</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        疫情后的工作模式正在发生巨大变革，我们探讨了远程和混合工作模式...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div>
+                            <span class="episode-list-progress" style="color: var(--primary-color);">已播放 25%</span>
+                        </div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">39分钟</span>
+                            <span class="episode-list-date">2025/03/12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="episode-list-item touch-feedback" data-episode-id="4" data-nav-to="player.html" data-nav-data='{"episodeId":"4","title":"可持续发展与企业责任","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">可持续发展与企业责任</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        与行业专家和可持续发展领袖讨论企业如何通过环保实践和社会责任创造长期价值...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div>
+                            <i class="fas fa-download" style="color: var(--text-secondary); margin-right: 4px;"></i>
+                            <span style="color: var(--text-secondary);">已下载</span>
+                        </div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">45分钟</span>
+                            <span class="episode-list-date">2025/03/05</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="episode-list-item touch-feedback" data-episode-id="5" data-nav-to="player.html" data-nav-data='{"episodeId":"5","title":"元宇宙商业机会","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">元宇宙商业机会</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        本期节目我们邀请了多位元宇宙专家和投资者，一起讨论这个新兴领域的商业机会和挑战...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div>
+                            <i class="fas fa-heart" style="color: var(--primary-color); margin-right: 4px;"></i>
+                            <span style="color: var(--primary-color);">已收藏</span>
+                        </div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">48分钟</span>
+                            <span class="episode-list-date">2025/02/26</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="episode-list-item touch-feedback" data-episode-id="6" data-nav-to="player.html" data-nav-data='{"episodeId":"6","title":"创业公司融资策略","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">创业公司融资策略</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        与投资人和成功创业者一起探讨，在当前经济环境下创业公司如何制定有效的融资策略...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div></div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">41分钟</span>
+                            <span class="episode-list-date">2025/02/19</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="episode-list-item touch-feedback" data-episode-id="7" data-nav-to="player.html" data-nav-data='{"episodeId":"7","title":"人工智能与职场变革","podcastName":"商业内幕"}'>
+                <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-list-cover">
+                <div class="episode-list-info">
+                    <div class="episode-list-title">人工智能与职场变革</div>
+                    <div class="episode-list-desc" style="font-size: 14px; color: var(--text-secondary); margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        探讨AI如何重塑工作环境、创造新职业同时也淘汰传统岗位，以及如何适应这一变革...
+                    </div>
+                    <div class="episode-list-meta">
+                        <div></div>
+                        <div style="display: flex;">
+                            <span class="episode-list-duration">37分钟</span>
+                            <span class="episode-list-date">2025/02/12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部Tab导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item" data-tab-index="0">
+            <i class="fas fa-home tab-icon"></i>
+            <span>首页</span>
+        </div>
+        <div class="tab-item" data-tab-index="1">
+            <i class="fas fa-search tab-icon"></i>
+            <span>发现</span>
+        </div>
+        <div class="tab-item active" data-tab-index="2">
+            <i class="fas fa-headphones tab-icon"></i>
+            <span>订阅</span>
+        </div>
+        <div class="tab-item" data-tab-index="3">
+            <i class="fas fa-user tab-icon"></i>
+            <span>我的</span>
+        </div>
+    </div>
+
+    <!-- 迷你播放器 -->
+    <div class="player-container" data-nav-to="player.html">
+        <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
+        <div class="player-info">
+            <div class="player-title">数字化转型的关键因素</div>
+            <div class="player-show">商业内幕</div>
+        </div>
+        <div class="player-controls" onclick="event.stopPropagation();">
+            <i class="fas fa-step-backward"></i>
+            <div class="player-play-btn">
+                <i class="fas fa-play" style="font-size: 14px;"></i>
+            </div>
+            <i class="fas fa-step-forward"></i>
+        </div>
+    </div>
+
+    <!-- 引入导航脚本 -->
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理导航数据，更新页面内容
+            const navData = window.appNav.getNavigationData();
+            if (navData) {
+                if (navData.podcastName) {
+                    document.getElementById('podcast-title').textContent = navData.podcastName;
+                    document.title = `小宇宙播客 - ${navData.podcastName} 剧集`;
+                }
+            }
+            
+            // 搜索功能
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', filterEpisodes);
+            
+            function filterEpisodes() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const episodes = document.querySelectorAll('.episode-list-item');
+                
+                episodes.forEach(episode => {
+                    const title = episode.querySelector('.episode-list-title').textContent.toLowerCase();
+                    const desc = episode.querySelector('.episode-list-desc').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                        episode.style.display = 'flex';
+                    } else {
+                        episode.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 筛选功能
+            const filterButtons = document.querySelectorAll('.pill-button');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 更新按钮样式
+                    filterButtons.forEach(b => {
+                        b.classList.remove('pill-active');
+                        b.classList.add('pill-inactive');
+                    });
+                    this.classList.remove('pill-inactive');
+                    this.classList.add('pill-active');
+                    
+                    // 执行筛选
+                    const filter = this.getAttribute('data-filter');
+                    const episodes = document.querySelectorAll('.episode-list-item');
+                    
+                    episodes.forEach(episode => {
+                        switch(filter) {
+                            case 'all':
+                                episode.style.display = 'flex';
+                                break;
+                            case 'downloaded':
+                                if (episode.innerHTML.includes('已下载')) {
+                                    episode.style.display = 'flex';
+                                } else {
+                                    episode.style.display = 'none';
+                                }
+                                break;
+                            case 'favorite':
+                                if (episode.innerHTML.includes('已收藏')) {
+                                    episode.style.display = 'flex';
+                                } else {
+                                    episode.style.display = 'none';
+                                }
+                                break;
+                            case 'started':
+                                if (episode.innerHTML.includes('已播放')) {
+                                    episode.style.display = 'flex';
+                                } else {
+                                    episode.style.display = 'none';
+                                }
+                                break;
+                            case 'unplayed':
+                                if (!episode.innerHTML.includes('已播放') && 
+                                    !episode.innerHTML.includes('正在播放')) {
+                                    episode.style.display = 'flex';
+                                } else {
+                                    episode.style.display = 'none';
+                                }
+                                break;
+                        }
+                    });
+                    
+                    // 显示筛选反馈
+                    showToast(`已筛选: ${this.textContent}`);
+                });
+            });
+            
+            // 排序按钮
+            let sortOrder = 'desc'; // 默认为最新排序（降序）
+            document.getElementById('sort-btn').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                const text = this.querySelector('span');
+                
+                if (sortOrder === 'desc') {
+                    // 切换为升序
+                    sortOrder = 'asc';
+                    icon.classList.remove('fa-sort-amount-down');
+                    icon.classList.add('fa-sort-amount-up');
+                    text.textContent = '最早';
+                } else {
+                    // 切换为降序
+                    sortOrder = 'desc';
+                    icon.classList.remove('fa-sort-amount-up');
+                    icon.classList.add('fa-sort-amount-down');
+                    text.textContent = '最新';
+                }
+                
+                // 执行排序
+                sortEpisodes(sortOrder);
+                showToast(`按${text.textContent}排序`);
+            });
+            
+            function sortEpisodes(order) {
+                const episodeList = document.querySelector('.episode-list');
+                const episodes = Array.from(episodeList.children);
+                
+                // 根据日期排序
+                episodes.sort((a, b) => {
+                    const dateA = a.querySelector('.episode-list-date').textContent;
+                    const dateB = b.querySelector('.episode-list-date').textContent;
+                    
+                    // 转换日期格式以便比较
+                    const timeA = new Date(dateA).getTime();
+                    const timeB = new Date(dateB).getTime();
+                    
+                    return order === 'desc' ? timeB - timeA : timeA - timeB;
+                });
+                
+                // 重新添加排序后的元素
+                episodes.forEach(episode => {
+                    episodeList.appendChild(episode);
+                });
+            }
+            
+            // 绑定底部选项卡
+            document.querySelectorAll('.tab-bar .tab-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabIndex = parseInt(this.getAttribute('data-tab-index'));
+                    window.appNav.switchTab(tabIndex);
+                });
+            });
+            
+            // 显示Toast消息
+            function showToast(message) {
+                // 创建toast元素
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                toast.style.position = 'fixed';
+                toast.style.bottom = '150px';
+                toast.style.left = '50%';
+                toast.style.transform = 'translateX(-50%)';
+                toast.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                toast.style.color = 'white';
+                toast.style.padding = '10px 16px';
+                toast.style.borderRadius = '20px';
+                toast.style.zIndex = '1000';
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                
+                // 添加到页面
+                document.body.appendChild(toast);
+                
+                // 显示动画
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                    setTimeout(() => {
+                        toast.style.opacity = '0';
+                        setTimeout(() => {
+                            toast.remove();
+                        }, 300);
+                    }, 1500);
+                }, 10);
+            }
+        });
+    </script>
+</body>
+</html>

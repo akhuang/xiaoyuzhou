@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小宇宙播客 - 播放页面</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/transitions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
@@ -100,6 +101,7 @@
         
         .player-page {
             padding-bottom: 100px; /* 为底部控制栏留出空间 */
+            padding-top: 20px;
         }
         
         .bottom-controls {
@@ -113,10 +115,82 @@
             z-index: 11;
             background-color: white;
         }
+        
+        /* 新增样式：播放器页面的返回按钮 */
+        .player-back-button {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .player-back-button:active {
+            transform: scale(0.92);
+        }
+        
+        .playback-speed {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .playback-speed:active {
+            transform: scale(0.95);
+        }
+        
+        .playback-speed-selected {
+            background-color: rgba(255,79,94,0.1);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .playback-speed-normal {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--text-secondary);
+        }
+        
+        /* 添加播放进度动画样式 */
+        @keyframes progressAnimation {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        .progress-animation {
+            position: absolute;
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 10px;
+            animation: progressAnimation 36s linear forwards;
+            animation-play-state: running;
+        }
+        
+        .progress-container {
+            position: relative;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
-<body>
+<body class="can-go-back">
     <div class="gradient-bg"></div>
+    
+    <!-- 添加滑动手势指示器 -->
+    <div class="edge-swipe-indicator"></div>
     
     <!-- 顶部状态栏 -->
     <div class="status-bar" style="background-color: transparent;">
@@ -129,91 +203,315 @@
         </div>
     </div>
     
+    <!-- 返回按钮 -->
+    <div class="player-back-button" data-nav-back>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+    
     <div class="player-page">
         <!-- 下拉指示器 -->
-        <div style="width: 36px; height: 5px; background-color: rgba(0,0,0,0.2); border-radius: 3px; margin: -20px auto 30px;"></div>
+        <div style="width: 36px; height: 5px; background-color: rgba(0,0,0,0.2); border-radius: 3px; margin: 0 auto 30px;"></div>
         
         <!-- 封面图和标题信息 -->
         <div style="position: relative;">
-            <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="player-page-cover animated-cover">
+            <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="player-page-cover animated-cover" id="episode-cover">
             
             <!-- 封面反光效果 -->
             <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 280px; height: 20px; background: rgba(255,255,255,0.2); border-radius: 50%; filter: blur(10px);"></div>
         </div>
         
-        <div class="player-page-title">数字化转型的关键因素</div>
-        <div class="player-page-show">商业内幕</div>
+        <div class="player-page-title" id="episode-title">数字化转型的关键因素</div>
+        <div class="player-page-show" id="podcast-name">商业内幕</div>
         
         <!-- 进度条 -->
-        <input type="range" class="custom-slider" min="0" max="100" value="35">
+        <div class="progress-container">
+            <div class="progress-animation" id="progress-bar"></div>
+        </div>
         
         <div class="player-time">
-            <div>12:36</div>
-            <div>36:20</div>
+            <div id="current-time">12:36</div>
+            <div id="total-time">36:20</div>
         </div>
         
         <!-- 播放控制 -->
         <div class="player-main-controls">
-            <i class="fas fa-backward-step btn-animation" style="font-size: 30px;"></i>
-            <i class="fas fa-backward btn-animation" style="font-size: 24px;"></i>
+            <i class="fas fa-backward-step btn-animation" style="font-size: 30px;" id="prev-episode"></i>
+            <i class="fas fa-backward btn-animation" style="font-size: 24px;" id="rewind-15"></i>
             
-            <div class="player-play-big btn-animation">
-                <i class="fas fa-pause"></i>
+            <div class="player-play-big btn-animation" id="play-pause-btn">
+                <i class="fas fa-pause" id="play-icon"></i>
             </div>
             
-            <i class="fas fa-forward btn-animation" style="font-size: 24px;"></i>
-            <i class="fas fa-forward-step btn-animation" style="font-size: 30px;"></i>
+            <i class="fas fa-forward btn-animation" style="font-size: 24px;" id="forward-15"></i>
+            <i class="fas fa-forward-step btn-animation" style="font-size: 30px;" id="next-episode"></i>
         </div>
         
         <!-- 扩展功能 -->
         <div class="player-actions">
-            <div class="player-action">
+            <div class="player-action touch-feedback" id="volume-btn">
                 <i class="fas fa-volume-up"></i>
                 <span>音量</span>
             </div>
             
-            <div class="player-action" style="color: var(--primary-color);">
+            <div class="player-action touch-feedback" id="favorite-btn">
                 <i class="fas fa-heart" style="color: var(--primary-color);"></i>
                 <span>收藏</span>
             </div>
             
-            <div class="player-action">
+            <div class="player-action touch-feedback" id="timer-btn">
                 <i class="fas fa-clock"></i>
                 <span>定时</span>
             </div>
             
-            <div class="player-action">
+            <div class="player-action touch-feedback" id="share-btn">
                 <i class="fas fa-share-alt"></i>
                 <span>分享</span>
             </div>
             
-            <div class="player-action">
+            <div class="player-action touch-feedback" id="playlist-btn" data-nav-to="episode_list.html">
                 <i class="fas fa-list"></i>
                 <span>列表</span>
             </div>
         </div>
         
         <!-- 播放速度选择 -->
-        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 12px;">
-            <div style="padding: 6px 12px; background-color: rgba(0,0,0,0.05); border-radius: 20px; font-size: 14px; color: var(--text-secondary);">0.8x</div>
-            <div style="padding: 6px 12px; background-color: rgba(255,79,94,0.1); border-radius: 20px; font-size: 14px; color: var(--primary-color); font-weight: 600;">1.0x</div>
-            <div style="padding: 6px 12px; background-color: rgba(0,0,0,0.05); border-radius: 20px; font-size: 14px; color: var(--text-secondary);">1.2x</div>
-            <div style="padding: 6px 12px; background-color: rgba(0,0,0,0.05); border-radius: 20px; font-size: 14px; color: var(--text-secondary);">1.5x</div>
-            <div style="padding: 6px 12px; background-color: rgba(0,0,0,0.05); border-radius: 20px; font-size: 14px; color: var(--text-secondary);">2.0x</div>
+        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 12px;" id="playback-speeds">
+            <div class="playback-speed playback-speed-normal" data-speed="0.8">0.8x</div>
+            <div class="playback-speed playback-speed-selected" data-speed="1.0">1.0x</div>
+            <div class="playback-speed playback-speed-normal" data-speed="1.2">1.2x</div>
+            <div class="playback-speed playback-speed-normal" data-speed="1.5">1.5x</div>
+            <div class="playback-speed playback-speed-normal" data-speed="2.0">2.0x</div>
         </div>
     </div>
     
-    <!-- 底部控制区 -->
-    <div class="bottom-controls">
-        <button style="background: none; border: none; color: var(--text-secondary); font-size: 16px;">
-            <i class="fas fa-chevron-down"></i>
-        </button>
-        <button style="background: none; border: none; color: var(--text-secondary); font-size: 16px;">
-            <i class="fas fa-ellipsis-h"></i>
-        </button>
-    </div>
+    <!-- 底部控制区，去掉这个区域因为我们已经有了返回按钮和操作按钮 -->
     
     <!-- 播放页面底部栏，与其他页面保持一致 -->
     <div class="player-bottom-bar"></div>
+
+    <!-- 引入导航脚本 -->
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理导航数据，更新页面内容
+            const navData = window.appNav.getNavigationData();
+            if (navData) {
+                if (navData.episodeId && navData.title) {
+                    // 更新播放器页面标题和内容
+                    document.getElementById('episode-title').textContent = navData.title;
+                    document.title = `小宇宙播客 - ${navData.title}`;
+                    
+                    // 如果有播客名称，更新它
+                    if (navData.podcastName) {
+                        document.getElementById('podcast-name').textContent = navData.podcastName;
+                    }
+                    
+                    // 如果有不同的封面图，可以在这里更新
+                    // 这里只是示例，实际应该根据剧集ID获取相应的资源
+                }
+            }
+            
+            // 播放/暂停功能
+            let isPlaying = true;
+            const playPauseBtn = document.getElementById('play-pause-btn');
+            const playIcon = document.getElementById('play-icon');
+            const progressBar = document.getElementById('progress-bar');
+            
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            
+            function togglePlayPause() {
+                if (isPlaying) {
+                    // 暂停
+                    playIcon.classList.remove('fa-pause');
+                    playIcon.classList.add('fa-play');
+                    progressBar.style.animationPlayState = 'paused';
+                } else {
+                    // 播放
+                    playIcon.classList.remove('fa-play');
+                    playIcon.classList.add('fa-pause');
+                    progressBar.style.animationPlayState = 'running';
+                }
+                isPlaying = !isPlaying;
+                
+                // 显示反馈
+                showToast(isPlaying ? '正在播放' : '已暂停');
+            }
+            
+            // 前进和后退15秒功能
+            document.getElementById('forward-15').addEventListener('click', function() {
+                // 模拟前进15秒
+                updateProgress(15);
+                showToast('前进 15 秒');
+            });
+            
+            document.getElementById('rewind-15').addEventListener('click', function() {
+                // 模拟后退15秒
+                updateProgress(-15);
+                showToast('后退 15 秒');
+            });
+            
+            // 更新播放进度
+            function updateProgress(seconds) {
+                // 获取当前时间
+                const currentTimeElem = document.getElementById('current-time');
+                const currentTime = parseTime(currentTimeElem.textContent);
+                
+                // 计算新的时间（以秒为单位）
+                let newTimeInSeconds = currentTime + seconds;
+                
+                // 确保时间在有效范围内
+                const totalTimeInSeconds = parseTime(document.getElementById('total-time').textContent);
+                newTimeInSeconds = Math.max(0, Math.min(newTimeInSeconds, totalTimeInSeconds));
+                
+                // 更新显示的时间
+                currentTimeElem.textContent = formatTime(newTimeInSeconds);
+                
+                // 更新进度条
+                const progressPercentage = (newTimeInSeconds / totalTimeInSeconds) * 100;
+                progressBar.style.width = `${progressPercentage}%`;
+                
+                // 如果是通过交互更新进度，取消动画并使用静态宽度
+                progressBar.style.animation = 'none';
+                progressBar.style.width = `${progressPercentage}%`;
+            }
+            
+            // 辅助函数：将"分:秒"格式的时间解析为秒
+            function parseTime(timeStr) {
+                const parts = timeStr.split(':');
+                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            }
+            
+            // 辅助函数：将秒数格式化为"分:秒"格式
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            // 播放速度选择
+            const speedButtons = document.querySelectorAll('.playback-speed');
+            speedButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的选中样式
+                    speedButtons.forEach(b => {
+                        b.classList.remove('playback-speed-selected');
+                        b.classList.add('playback-speed-normal');
+                    });
+                    
+                    // 为当前按钮添加选中样式
+                    this.classList.remove('playback-speed-normal');
+                    this.classList.add('playback-speed-selected');
+                    
+                    // 获取速度值
+                    const speed = this.getAttribute('data-speed');
+                    
+                    // 显示反馈
+                    showToast(`播放速度: ${speed}x`);
+                    
+                    // 在真实应用中，这里应该设置音频元素的播放速度
+                });
+            });
+            
+            // 收藏功能
+            document.getElementById('favorite-btn').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                const text = this.querySelector('span');
+                
+                if (icon.style.color) {
+                    // 取消收藏
+                    icon.style.color = '';
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    text.textContent = '收藏';
+                    showToast('已取消收藏');
+                } else {
+                    // 添加收藏
+                    icon.style.color = 'var(--primary-color)';
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    text.textContent = '已收藏';
+                    showToast('已添加到收藏');
+                }
+            });
+            
+            // 音量控制
+            document.getElementById('volume-btn').addEventListener('click', function() {
+                showVolumeControl();
+            });
+            
+            // 定时功能
+            document.getElementById('timer-btn').addEventListener('click', function() {
+                showTimerOptions();
+            });
+            
+            // 分享功能
+            document.getElementById('share-btn').addEventListener('click', function() {
+                showShareOptions();
+            });
+            
+            // 显示音量控制
+            function showVolumeControl() {
+                showToast('音量控制功能');
+                // 在实际应用中，这里应该显示音量控制UI
+            }
+            
+            // 显示定时选项
+            function showTimerOptions() {
+                showToast('定时功能');
+                // 在实际应用中，这里应该显示定时选项UI
+            }
+            
+            // 显示分享选项
+            function showShareOptions() {
+                showToast('分享功能');
+                // 在实际应用中，这里应该显示分享选项UI
+            }
+            
+            // 显示Toast提示
+            function showToast(message) {
+                // 创建toast元素
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                toast.style.position = 'fixed';
+                toast.style.bottom = '150px';
+                toast.style.left = '50%';
+                toast.style.transform = 'translateX(-50%)';
+                toast.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                toast.style.color = 'white';
+                toast.style.padding = '10px 16px';
+                toast.style.borderRadius = '20px';
+                toast.style.zIndex = '1000';
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                
+                // 添加到页面
+                document.body.appendChild(toast);
+                
+                // 显示动画
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                    setTimeout(() => {
+                        toast.style.opacity = '0';
+                        setTimeout(() => {
+                            toast.remove();
+                        }, 300);
+                    }, 1500);
+                }, 10);
+            }
+            
+            // 监听滑动返回手势
+            document.addEventListener('touchmove', function(e) {
+                // 检测垂直滑动（向下）表示返回
+                const touchY = e.touches[0].clientY;
+                const screenHeight = window.innerHeight;
+                
+                if (touchY > screenHeight * 0.7) {
+                    // 滑动到屏幕底部区域，表示要返回
+                    window.appNav.goBack();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

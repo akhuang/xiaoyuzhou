@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小宇宙播客 - 播客详情</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/transitions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
@@ -35,9 +36,25 @@
             transform: translateY(2px);
             box-shadow: 0 2px 6px rgba(255, 79, 94, 0.2);
         }
+        
+        .episode-item {
+            position: relative;
+        }
+        
+        .episode-footer > div {
+            cursor: pointer;
+        }
+        
+        .episode-play {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
     </style>
 </head>
-<body>
+<body class="can-go-back">
+    <!-- 添加滑动手势指示器 -->
+    <div class="edge-swipe-indicator"></div>
+    
     <!-- 顶部状态栏 -->
     <div class="status-bar">
         <div class="status-bar-left">9:41</div>
@@ -52,16 +69,17 @@
     <!-- 主内容区域 -->
     <div class="content">
         <!-- 返回按钮 -->
-        <div style="margin-bottom: 16px;">
-            <i class="fas fa-chevron-left" style="font-size: 16px;"></i>
+        <div class="back-button" data-nav-back>
+            <i class="fas fa-chevron-left"></i>
+            <span>返回</span>
         </div>
         
         <!-- 播客头部信息 -->
         <div class="podcast-header">
-            <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="podcast-detail-cover">
-            <div class="podcast-detail-title">商业内幕</div>
-            <div class="podcast-detail-host">商业见解传媒</div>
-            <button class="subscribe-btn">订阅</button>
+            <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="podcast-detail-cover" id="podcast-cover">
+            <div class="podcast-detail-title" id="podcast-title">商业内幕</div>
+            <div class="podcast-detail-host" id="podcast-host">商业见解传媒</div>
+            <button class="subscribe-btn" id="subscribe-btn">订阅</button>
             
             <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px; color: var(--text-secondary); font-size: 14px;">
                 <span>周更</span>
@@ -72,22 +90,22 @@
         
         <!-- 操作按钮 -->
         <div class="podcast-action-row">
-            <div class="podcast-action">
+            <div class="podcast-action touch-feedback">
                 <i class="fas fa-share-alt"></i>
                 <span>分享</span>
             </div>
             
-            <div class="podcast-action">
+            <div class="podcast-action touch-feedback" id="favorite-btn">
                 <i class="far fa-heart"></i>
                 <span>收藏</span>
             </div>
             
-            <div class="podcast-action">
+            <div class="podcast-action touch-feedback">
                 <i class="fas fa-download"></i>
                 <span>下载</span>
             </div>
             
-            <div class="podcast-action">
+            <div class="podcast-action touch-feedback">
                 <i class="fas fa-ellipsis-h"></i>
                 <span>更多</span>
             </div>
@@ -96,17 +114,17 @@
         <!-- 播客简介 -->
         <div style="margin: 20px 0; padding: 16px; background-color: var(--card-bg); border-radius: 16px;">
             <div style="font-weight: 600; margin-bottom: 12px;">播客简介</div>
-            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;" id="podcast-description">
                 这是一个关注商业趋势与数字化转型的深度访谈播客。我们邀请行业领袖、创新者和思想家，共同探讨正在改变商业格局的关键因素和策略。每周二更新，带你了解最前沿的商业见解。
             </div>
-            <div style="color: var(--primary-color); font-size: 14px; margin-top: 8px;">展开更多</div>
+            <div class="touch-feedback" style="color: var(--primary-color); font-size: 14px; margin-top: 8px;" id="expand-description">展开更多</div>
         </div>
         
         <!-- 剧集列表 -->
         <div>
             <div class="episode-list-header">
                 <div class="episode-list-title">全部剧集</div>
-                <div class="episode-sort">
+                <div class="episode-sort touch-feedback" id="sort-btn">
                     <i class="fas fa-sort-amount-down"></i>
                     <span>最新</span>
                 </div>
@@ -124,9 +142,15 @@
                             <i class="far fa-clock"></i>
                             <span style="margin-left: 4px;">36分钟</span>
                         </div>
-                        <div>
-                            <i class="fas fa-play-circle"></i>
-                            <span style="margin-left: 4px;">播放</span>
+                        <div style="display: flex; align-items: center;">
+                            <div class="touch-feedback" style="margin-right: 16px;" data-nav-to="episode_comments.html" data-nav-data='{"episodeId":"1","title":"数字化转型的关键因素"}'>
+                                <i class="far fa-comment"></i>
+                                <span style="margin-left: 4px;">42条评论</span>
+                            </div>
+                            <div class="touch-feedback episode-play" data-nav-to="player.html" data-nav-data='{"episodeId":"1","title":"数字化转型的关键因素","podcastName":"商业内幕"}'>
+                                <i class="fas fa-play-circle"></i>
+                                <span style="margin-left: 4px;">播放</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,9 +166,15 @@
                             <i class="far fa-clock"></i>
                             <span style="margin-left: 4px;">42分钟</span>
                         </div>
-                        <div>
-                            <i class="fas fa-play-circle"></i>
-                            <span style="margin-left: 4px;">播放</span>
+                        <div style="display: flex; align-items: center;">
+                            <div class="touch-feedback" style="margin-right: 16px;" data-nav-to="episode_comments.html" data-nav-data='{"episodeId":"2","title":"数据驱动的决策模型"}'>
+                                <i class="far fa-comment"></i>
+                                <span style="margin-left: 4px;">28条评论</span>
+                            </div>
+                            <div class="touch-feedback episode-play" data-nav-to="player.html" data-nav-data='{"episodeId":"2","title":"数据驱动的决策模型","podcastName":"商业内幕"}'>
+                                <i class="fas fa-play-circle"></i>
+                                <span style="margin-left: 4px;">播放</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,9 +190,15 @@
                             <i class="far fa-clock"></i>
                             <span style="margin-left: 4px;">39分钟</span>
                         </div>
-                        <div>
-                            <i class="fas fa-play-circle"></i>
-                            <span style="margin-left: 4px;">播放</span>
+                        <div style="display: flex; align-items: center;">
+                            <div class="touch-feedback" style="margin-right: 16px;" data-nav-to="episode_comments.html" data-nav-data='{"episodeId":"3","title":"远程工作的未来趋势"}'>
+                                <i class="far fa-comment"></i>
+                                <span style="margin-left: 4px;">35条评论</span>
+                            </div>
+                            <div class="touch-feedback episode-play" data-nav-to="player.html" data-nav-data='{"episodeId":"3","title":"远程工作的未来趋势","podcastName":"商业内幕"}'>
+                                <i class="fas fa-play-circle"></i>
+                                <span style="margin-left: 4px;">播放</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -178,9 +214,15 @@
                             <i class="far fa-clock"></i>
                             <span style="margin-left: 4px;">45分钟</span>
                         </div>
-                        <div>
-                            <i class="fas fa-play-circle"></i>
-                            <span style="margin-left: 4px;">播放</span>
+                        <div style="display: flex; align-items: center;">
+                            <div class="touch-feedback" style="margin-right: 16px;" data-nav-to="episode_comments.html" data-nav-data='{"episodeId":"4","title":"可持续发展与企业责任"}'>
+                                <i class="far fa-comment"></i>
+                                <span style="margin-left: 4px;">19条评论</span>
+                            </div>
+                            <div class="touch-feedback episode-play" data-nav-to="player.html" data-nav-data='{"episodeId":"4","title":"可持续发展与企业责任","podcastName":"商业内幕"}'>
+                                <i class="fas fa-play-circle"></i>
+                                <span style="margin-left: 4px;">播放</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,26 +232,26 @@
     
     <!-- 底部Tab导航栏 -->
     <div class="tab-bar">
-        <div class="tab-item">
+        <div class="tab-item" data-tab-index="0">
             <i class="fas fa-home tab-icon"></i>
             <span>首页</span>
         </div>
-        <div class="tab-item">
+        <div class="tab-item" data-tab-index="1">
             <i class="fas fa-search tab-icon"></i>
             <span>发现</span>
         </div>
-        <div class="tab-item active">
+        <div class="tab-item active" data-tab-index="2">
             <i class="fas fa-headphones tab-icon"></i>
             <span>订阅</span>
         </div>
-        <div class="tab-item">
+        <div class="tab-item" data-tab-index="3">
             <i class="fas fa-user tab-icon"></i>
             <span>我的</span>
         </div>
     </div>
 
     <!-- 迷你播放器 -->
-    <div class="player-container">
+    <div class="player-container" data-nav-to="player.html">
         <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
         <div class="player-info">
             <div class="player-title">数字化转型的关键因素</div>
@@ -223,5 +265,76 @@
             <i class="fas fa-step-forward"></i>
         </div>
     </div>
+
+    <!-- 引入导航脚本 -->
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理导航数据，更新页面内容
+            const navData = window.appNav.getNavigationData();
+            if (navData) {
+                if (navData.id && navData.name) {
+                    document.getElementById('podcast-title').textContent = navData.name;
+                    // 根据播客ID选择正确的封面图
+                    const coverImg = document.getElementById('podcast-cover');
+                    coverImg.src = `img/podcasts/podcast${navData.id}.jpg`;
+                    document.title = `小宇宙播客 - ${navData.name}`;
+                    
+                    // 根据ID修改描述和主机
+                    // 这里可以添加更多的逻辑来确定不同播客的详情
+                }
+            }
+            
+            // 为收藏按钮添加交互逻辑
+            document.getElementById('favorite-btn').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    icon.style.color = '#FF4F5E';
+                    this.querySelector('span').textContent = '已收藏';
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    icon.style.color = '';
+                    this.querySelector('span').textContent = '收藏';
+                }
+            });
+            
+            // 为展开描述按钮添加交互逻辑
+            let isExpanded = false;
+            document.getElementById('expand-description').addEventListener('click', function() {
+                const descElem = document.getElementById('podcast-description');
+                if (!isExpanded) {
+                    descElem.style.maxHeight = 'none';
+                    this.textContent = '收起';
+                } else {
+                    descElem.style.maxHeight = '';
+                    this.textContent = '展开更多';
+                }
+                isExpanded = !isExpanded;
+            });
+            
+            // 为底部选项卡绑定事件
+            document.querySelectorAll('.tab-bar .tab-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabIndex = parseInt(this.getAttribute('data-tab-index'));
+                    window.appNav.switchTab(tabIndex);
+                });
+            });
+            
+            // 为订阅按钮添加交互效果
+            const subBtn = document.getElementById('subscribe-btn');
+            subBtn.addEventListener('click', function() {
+                if (this.textContent === '订阅') {
+                    this.textContent = '已订阅';
+                    this.style.backgroundColor = '#444';
+                } else {
+                    this.textContent = '订阅';
+                    this.style.backgroundColor = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

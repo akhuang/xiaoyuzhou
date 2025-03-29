@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宇宙播客 - 评论区</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/transitions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .content {
+            padding-bottom: 120px; /* 为迷你播放器留出空间 */
+        }
+        
+        /* 评论样式 */
+        .comment-item {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-small);
+        }
+        
+        .comment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .comment-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        
+        .comment-user {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+            color: var(--text-primary);
+        }
+        
+        .comment-time {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        
+        .comment-content {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .comment-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .comment-action {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+        
+        .comment-action:active {
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        .comment-action i {
+            margin-right: 4px;
+        }
+        
+        .comment-input-container {
+            position: fixed;
+            bottom: 83px;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            z-index: 101;
+        }
+        
+        .comment-input {
+            flex: 1;
+            background-color: rgba(142, 142, 147, 0.12);
+            border-radius: 20px;
+            border: none;
+            padding: 12px 16px;
+            font-size: 14px;
+            outline: none;
+            color: var(--text-primary);
+            margin-right: 12px;
+        }
+        
+        .send-btn {
+            background-color: var(--primary-color);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(255, 79, 94, 0.3);
+            transition: transform 0.2s ease;
+        }
+        
+        .send-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .liked {
+            color: var(--primary-color);
+        }
+        
+        /* 剧集信息卡片 */
+        .episode-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-small);
+        }
+        
+        .episode-card-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-right: 16px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="can-go-back">
+    <!-- 添加滑动手势指示器 -->
+    <div class="edge-swipe-indicator"></div>
+    
+    <!-- 顶部状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-left">9:41</div>
+        <div class="status-bar-center"></div>
+        <div class="status-bar-right">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi" style="margin-left: 6px;"></i>
+            <i class="fas fa-battery-full" style="margin-left: 6px;"></i>
+        </div>
+    </div>
+    
+    <!-- 主内容区域 -->
+    <div class="content hide-scrollbar">
+        <!-- 返回按钮 -->
+        <div class="back-button" data-nav-back>
+            <i class="fas fa-chevron-left"></i>
+            <span>返回</span>
+        </div>
+        
+        <!-- 剧集信息 -->
+        <div class="episode-card">
+            <img src="img/podcasts/podcast1.jpg" alt="剧集封面" class="episode-card-image" id="episode-cover">
+            <div>
+                <div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;" id="episode-title">数字化转型的关键因素</div>
+                <div style="color: var(--text-secondary); font-size: 13px;" id="podcast-name">商业内幕</div>
+            </div>
+        </div>
+        
+        <h2 style="font-size: 20px; margin-bottom: 16px;">评论 <span id="comment-count">(42)</span></h2>
+        
+        <!-- 评论列表 -->
+        <div class="comment-list">
+            <!-- 评论1 -->
+            <div class="comment-item">
+                <div class="comment-header">
+                    <img src="img/profile.jpg" alt="用户头像" class="comment-avatar">
+                    <div>
+                        <div class="comment-user">数字转型专家</div>
+                        <div class="comment-time">2小时前</div>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    这期节目很有深度，尤其是讨论到企业如何平衡短期投资回报与长期数字化战略的部分，给了我很多启发。希望未来能有更多关于中小企业如何实施数字化转型的案例分析。
+                </div>
+                <div class="comment-actions">
+                    <div class="comment-action like-btn touch-feedback" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count">24</span>
+                    </div>
+                    <div class="comment-action touch-feedback reply-btn" data-comment-id="1">
+                        <i class="far fa-comment"></i>
+                        <span>回复</span>
+                    </div>
+                    <div class="comment-action touch-feedback">
+                        <i class="far fa-share-square"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 评论2 -->
+            <div class="comment-item">
+                <div class="comment-header">
+                    <img src="img/profile.jpg" alt="用户头像" class="comment-avatar" style="filter: hue-rotate(120deg);">
+                    <div>
+                        <div class="comment-user">IT主管</div>
+                        <div class="comment-time">5小时前</div>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    作为一名IT部门的负责人，我非常赞同嘉宾关于数字化转型不仅仅是技术问题，更是组织文化问题的观点。我们公司正在经历这个过程，确实遇到了很多文化方面的阻力。
+                </div>
+                <div class="comment-actions">
+                    <div class="comment-action like-btn touch-feedback" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count">18</span>
+                    </div>
+                    <div class="comment-action touch-feedback reply-btn" data-comment-id="2">
+                        <i class="far fa-comment"></i>
+                        <span>回复</span>
+                    </div>
+                    <div class="comment-action touch-feedback">
+                        <i class="far fa-share-square"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 评论3 -->
+            <div class="comment-item">
+                <div class="comment-header">
+                    <img src="img/profile.jpg" alt="用户头像" class="comment-avatar" style="filter: hue-rotate(240deg);">
+                    <div>
+                        <div class="comment-user">产品经理</div>
+                        <div class="comment-time">昨天</div>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    这个节目提到的以客户为中心的数字化转型策略特别重要。很多公司过于关注内部效率，而忽略了客户体验的提升。期待下一期能聊聊如何构建用户友好的数字化产品。
+                </div>
+                <div class="comment-actions">
+                    <div class="comment-action like-btn touch-feedback" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count">32</span>
+                    </div>
+                    <div class="comment-action touch-feedback reply-btn" data-comment-id="3">
+                        <i class="far fa-comment"></i>
+                        <span>回复</span>
+                    </div>
+                    <div class="comment-action touch-feedback">
+                        <i class="far fa-share-square"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 评论4 -->
+            <div class="comment-item">
+                <div class="comment-header">
+                    <img src="img/profile.jpg" alt="用户头像" class="comment-avatar" style="filter: hue-rotate(60deg);">
+                    <div>
+                        <div class="comment-user">数据分析师</div>
+                        <div class="comment-time">前天</div>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    节目中提到的数据驱动决策模型非常有价值。我所在的团队正在努力构建这样的模型，但数据孤岛问题确实很难解决。希望主播以后能请一些数据集成方面的专家来分享经验。
+                </div>
+                <div class="comment-actions">
+                    <div class="comment-action like-btn touch-feedback" onclick="toggleLike(this)">
+                        <i class="far fa-heart"></i>
+                        <span class="like-count">15</span>
+                    </div>
+                    <div class="comment-action touch-feedback reply-btn" data-comment-id="4">
+                        <i class="far fa-comment"></i>
+                        <span>回复</span>
+                    </div>
+                    <div class="comment-action touch-feedback">
+                        <i class="far fa-share-square"></i>
+                        <span>分享</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 评论输入框 -->
+    <div class="comment-input-container">
+        <input type="text" class="comment-input" placeholder="发表你的评论..." id="comment-input">
+        <div class="send-btn touch-feedback" id="sendComment">
+            <i class="fas fa-paper-plane"></i>
+        </div>
+    </div>
+    
+    <!-- 底部Tab导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item" data-tab-index="0">
+            <i class="fas fa-home tab-icon"></i>
+            <span>首页</span>
+        </div>
+        <div class="tab-item" data-tab-index="1">
+            <i class="fas fa-search tab-icon"></i>
+            <span>发现</span>
+        </div>
+        <div class="tab-item active" data-tab-index="2">
+            <i class="fas fa-headphones tab-icon"></i>
+            <span>订阅</span>
+        </div>
+        <div class="tab-item" data-tab-index="3">
+            <i class="fas fa-user tab-icon"></i>
+            <span>我的</span>
+        </div>
+    </div>
+
+    <!-- 迷你播放器 -->
+    <div class="player-container" data-nav-to="player.html">
+        <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
+        <div class="player-info">
+            <div class="player-title">数字化转型的关键因素</div>
+            <div class="player-show">商业内幕</div>
+        </div>
+        <div class="player-controls" onclick="event.stopPropagation();">
+            <i class="fas fa-step-backward"></i>
+            <div class="player-play-btn">
+                <i class="fas fa-play" style="font-size: 14px;"></i>
+            </div>
+            <i class="fas fa-step-forward"></i>
+        </div>
+    </div>
+
+    <!-- 引入导航脚本 -->
+    <script src="js/navigation.js"></script>
+    <script>
+        // 点赞功能
+        function toggleLike(element) {
+            const heart = element.querySelector('i');
+            const likeCount = element.querySelector('.like-count');
+            const currentLikes = parseInt(likeCount.textContent);
+            
+            if (heart.classList.contains('far')) {
+                // 点赞
+                heart.classList.remove('far');
+                heart.classList.add('fas');
+                heart.classList.add('liked');
+                likeCount.textContent = currentLikes + 1;
+                element.classList.add('liked');
+                
+                // 添加点赞动画
+                const ripple = document.createElement('span');
+                ripple.className = 'like-ripple';
+                ripple.style.position = 'absolute';
+                ripple.style.width = '30px';
+                ripple.style.height = '30px';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255, 79, 94, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.opacity = '1';
+                ripple.style.transition = 'all 0.5s ease-out';
+                
+                element.style.position = 'relative';
+                element.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.transform = 'scale(2)';
+                    ripple.style.opacity = '0';
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 500);
+                }, 0);
+            } else {
+                // 取消点赞
+                heart.classList.remove('fas');
+                heart.classList.remove('liked');
+                heart.classList.add('far');
+                likeCount.textContent = currentLikes - 1;
+                element.classList.remove('liked');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理导航数据，更新页面内容
+            const navData = window.appNav.getNavigationData();
+            if (navData) {
+                if (navData.episodeId && navData.title) {
+                    // 更新评论页标题和内容
+                    document.getElementById('episode-title').textContent = navData.title;
+                    document.title = `小宇宙播客 - ${navData.title} 的评论`;
+                    
+                    // 可以根据剧集ID设置不同的评论内容
+                    // 这里只是示例，实际应该从API获取数据
+                }
+            }
+            
+            // 添加评论功能
+            document.getElementById('sendComment').addEventListener('click', addNewComment);
+            
+            // 也可以通过按回车键提交评论
+            document.getElementById('comment-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addNewComment();
+                }
+            });
+            
+            // 回复按钮功能
+            document.querySelectorAll('.reply-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const commentId = this.getAttribute('data-comment-id');
+                    const user = this.closest('.comment-item').querySelector('.comment-user').textContent;
+                    
+                    // 设置输入框为回复模式
+                    const input = document.getElementById('comment-input');
+                    input.placeholder = `回复 ${user}：`;
+                    input.setAttribute('data-reply-to', commentId);
+                    input.focus();
+                    
+                    // 滚动到输入框
+                    input.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // 绑定底部选项卡
+            document.querySelectorAll('.tab-bar .tab-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabIndex = parseInt(this.getAttribute('data-tab-index'));
+                    window.appNav.switchTab(tabIndex);
+                });
+            });
+        });
+        
+        // 添加新评论
+        function addNewComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+            
+            if (commentText) {
+                // 创建新评论元素
+                const newComment = document.createElement('div');
+                newComment.className = 'comment-item';
+                newComment.style.animation = 'fadeIn 0.3s ease';
+                
+                // 是否是回复模式
+                const isReply = commentInput.hasAttribute('data-reply-to');
+                let replyHTML = '';
+                
+                if (isReply) {
+                    const replyToId = commentInput.getAttribute('data-reply-to');
+                    const replyToUser = document.querySelector(`[data-comment-id="${replyToId}"]`)
+                        .closest('.comment-item')
+                        .querySelector('.comment-user').textContent;
+                    
+                    replyHTML = `<div class="reply-reference" style="padding: 8px 12px; background: rgba(0,0,0,0.03); 
+                        border-radius: 8px; margin-bottom: 10px; font-size: 13px;">
+                        <span style="color: var(--primary-color);">@${replyToUser}</span>
+                    </div>`;
+                }
+                
+                // 设置评论内容
+                newComment.innerHTML = `
+                    <div class="comment-header">
+                        <img src="img/profile.jpg" alt="用户头像" class="comment-avatar">
+                        <div>
+                            <div class="comment-user">播客爱好者</div>
+                            <div class="comment-time">刚刚</div>
+                        </div>
+                    </div>
+                    <div class="comment-content">
+                        ${replyHTML}
+                        ${commentText}
+                    </div>
+                    <div class="comment-actions">
+                        <div class="comment-action like-btn touch-feedback" onclick="toggleLike(this)">
+                            <i class="far fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </div>
+                        <div class="comment-action touch-feedback reply-btn" data-comment-id="new-${Date.now()}">
+                            <i class="far fa-comment"></i>
+                            <span>回复</span>
+                        </div>
+                        <div class="comment-action touch-feedback">
+                            <i class="far fa-share-square"></i>
+                            <span>分享</span>
+                        </div>
+                    </div>
+                `;
+                
+                // 将新评论添加到列表最前面
+                const commentList = document.querySelector('.comment-list');
+                commentList.insertBefore(newComment, commentList.firstChild);
+                
+                // 清空输入框并恢复默认状态
+                commentInput.value = '';
+                commentInput.placeholder = '发表你的评论...';
+                commentInput.removeAttribute('data-reply-to');
+                
+                // 更新评论计数
+                updateCommentCount(1);
+                
+                // 绑定新评论的回复按钮事件
+                newComment.querySelector('.reply-btn').addEventListener('click', function() {
+                    const commentId = this.getAttribute('data-comment-id');
+                    const user = this.closest('.comment-item').querySelector('.comment-user').textContent;
+                    
+                    commentInput.placeholder = `回复 ${user}：`;
+                    commentInput.setAttribute('data-reply-to', commentId);
+                    commentInput.focus();
+                });
+                
+                // 滚动到顶部，查看新评论
+                document.querySelector('.content').scrollTop = 0;
+                
+                // 显示成功提示
+                showToast('评论发布成功');
+            }
+        }
+        
+        // 更新评论计数
+        function updateCommentCount(delta) {
+            const countElement = document.getElementById('comment-count');
+            const currentCount = parseInt(countElement.textContent.match(/\d+/)[0]);
+            countElement.textContent = `(${currentCount + delta})`;
+        }
+        
+        // 显示Toast提示
+        function showToast(message) {
+            // 创建toast元素
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '150px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            toast.style.color = 'white';
+            toast.style.padding = '10px 16px';
+            toast.style.borderRadius = '20px';
+            toast.style.zIndex = '1000';
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s ease';
+            
+            // 添加到页面
+            document.body.appendChild(toast);
+            
+            // 显示动画
+            setTimeout(() => {
+                toast.style.opacity = '1';
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 1500);
+            }, 10);
+        }
+        
+        // 添加键盘事件监听，当键盘弹出时调整输入框位置
+        let originalBottom = 83; // 输入框的初始底部位置
+        
+        // 监听窗口大小变化，可能意味着键盘弹出
+        window.addEventListener('resize', function() {
+            const commentInputContainer = document.querySelector('.comment-input-container');
+            
+            // 判断是否是键盘弹出导致的resize
+            const isKeyboardVisible = window.innerHeight < window.outerHeight * 0.8;
+            
+            if (isKeyboardVisible) {
+                // 键盘弹出时，将输入框上移
+                commentInputContainer.style.bottom = '0px';
+            } else {
+                // 键盘收起时，还原输入框位置
+                commentInputContainer.style.bottom = originalBottom + 'px';
+            }
+        });
+    </script>
+</body>
+</html>

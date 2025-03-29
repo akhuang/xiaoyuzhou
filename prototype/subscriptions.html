@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小宇宙播客 - 订阅</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/transitions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
@@ -15,13 +16,24 @@
             overflow: hidden;
         }
         
-        /* 移除页面内部的边距，交由框架处理 */
         .content {
             padding-bottom: 70px; /* 为迷你播放器留出空间 */
+        }
+        
+        .subscription-item {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .subscription-item:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
+    <!-- 添加滑动手势指示器 -->
+    <div class="edge-swipe-indicator"></div>
+    
     <!-- 顶部状态栏 -->
     <div class="status-bar">
         <div class="status-bar-left">9:41</div>
@@ -37,7 +49,7 @@
     <div class="content">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
             <h1 style="font-size: 28px; margin: 0;">我的订阅</h1>
-            <div>
+            <div class="touch-feedback" data-nav-to="search.html">
                 <i class="fas fa-search" style="font-size: 20px;"></i>
             </div>
         </div>
@@ -45,17 +57,17 @@
         <!-- 订阅内容 -->
         <div class="section-title">常听频道</div>
         <div class="subscription-grid">
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"1","name":"商业内幕"}'>
                 <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">商业内幕</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"2","name":"科技前沿"}'>
                 <img src="img/podcasts/podcast2.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">科技前沿</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"3","name":"创意工作坊"}'>
                 <img src="img/podcasts/podcast3.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">创意工作坊</div>
             </div>
@@ -63,47 +75,47 @@
         
         <div class="section-title">全部订阅</div>
         <div class="subscription-grid">
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"1","name":"商业内幕"}'>
                 <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">商业内幕</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"2","name":"科技前沿"}'>
                 <img src="img/podcasts/podcast2.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">科技前沿</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"3","name":"创意工作坊"}'>
                 <img src="img/podcasts/podcast3.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">创意工作坊</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"4","name":"全球经济观察"}'>
                 <img src="img/podcasts/podcast4.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">全球经济观察</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"5","name":"文化沙龙"}'>
                 <img src="img/podcasts/podcast5.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">文化沙龙</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"6","name":"科学前沿"}'>
                 <img src="img/podcasts/podcast6.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">科学前沿</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"7","name":"职场攻略"}'>
                 <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">职场攻略</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"8","name":"语言学习"}'>
                 <img src="img/podcasts/podcast2.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">语言学习</div>
             </div>
             
-            <div class="subscription-item">
+            <div class="subscription-item touch-feedback" data-nav-to="podcast_detail.html" data-nav-data='{"id":"9","name":"旅行见闻"}'>
                 <img src="img/podcasts/podcast3.jpg" alt="播客封面" class="subscription-cover">
                 <div class="subscription-name">旅行见闻</div>
             </div>
@@ -112,26 +124,26 @@
     
     <!-- 底部Tab导航栏 -->
     <div class="tab-bar">
-        <div class="tab-item">
+        <div class="tab-item" data-tab-index="0">
             <i class="fas fa-home tab-icon"></i>
             <span>首页</span>
         </div>
-        <div class="tab-item">
+        <div class="tab-item" data-tab-index="1">
             <i class="fas fa-search tab-icon"></i>
             <span>发现</span>
         </div>
-        <div class="tab-item active">
+        <div class="tab-item active" data-tab-index="2">
             <i class="fas fa-headphones tab-icon"></i>
             <span>订阅</span>
         </div>
-        <div class="tab-item">
+        <div class="tab-item" data-tab-index="3">
             <i class="fas fa-user tab-icon"></i>
             <span>我的</span>
         </div>
     </div>
 
     <!-- 迷你播放器 -->
-    <div class="player-container">
+    <div class="player-container" data-nav-to="player.html">
         <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
         <div class="player-info">
             <div class="player-title">数字化转型的关键因素</div>
@@ -145,5 +157,19 @@
             <i class="fas fa-step-forward"></i>
         </div>
     </div>
+
+    <!-- 引入导航脚本 -->
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 修正底部选项卡的点击事件
+            document.querySelectorAll('.tab-bar .tab-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabIndex = parseInt(this.getAttribute('data-tab-index'));
+                    window.appNav.switchTab(tabIndex);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
