@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宇宙播客 - 原型展示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .pages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        .page-container {
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 16px 0;
+            padding: 8px 0;
+            background-color: #FF4F5E;
+            color: white;
+            border-radius: 8px;
+        }
+        
+        /* 自定义 iframe 样式 */
+        .phone-container {
+            width: 430px;
+            height: 932px;
+            background-color: #000;
+            border-radius: 55px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.10);
+            position: relative;
+            overflow: hidden;
+            margin: 30px auto;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-color);
+            border-radius: 45px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .description {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .description h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #FF4F5E;
+        }
+        
+        .description p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        
+        .description ul {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .description li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>小宇宙播客应用原型</h1>
+            <div class="subtitle">高保真交互式原型设计</div>
+        </header>
+        
+        <div class="description">
+            <h2>功能概述</h2>
+            <p>这是一款专为播客爱好者设计的高质量播客收听应用，主要功能包括：</p>
+            <ul>
+                <li><strong>内容发现：</strong>精选推荐、热门排行和分类浏览，帮助用户发现感兴趣的播客内容</li>
+                <li><strong>个性化订阅：</strong>订阅喜爱的播客频道，及时获取更新提醒</li>
+                <li><strong>播放控制：</strong>高品质播放器，支持倍速播放、定时停止等功能</li>
+                <li><strong>社区互动：</strong>评论、点赞、分享功能，与其他听友交流讨论</li>
+                <li><strong>个人中心：</strong>收听记录、收藏管理、下载内容等个性化功能</li>
+            </ul>
+        </div>
+        
+        <div class="pages">
+            <div class="page-container">
+                <div class="page-title">首页</div>
+                <div class="phone-container">
+                    <div class="phone-screen">
+                        <iframe src="home.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="page-title">发现页</div>
+                <div class="phone-container">
+                    <div class="phone-screen">
+                        <iframe src="discover.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="page-title">订阅页</div>
+                <div class="phone-container">
+                    <div class="phone-screen">
+                        <iframe src="subscriptions.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="page-title">个人中心</div>
+                <div class="phone-container">
+                    <div class="phone-screen">
+                        <iframe src="profile.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="page-title">播客详情</div>
+                <div class="phone-container">
+                    <div class="phone-screen">
+                        <iframe src="podcast_detail.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-container">
+                <div class="page-title">播放页面</div>
+                <div class="phone-container">
+                    <div class="phone-screen">
+                        <iframe src="player.html" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="description">
+            <h2>设计说明</h2>
+            <p>本原型设计基于现代化的UI设计规范，采用了iOS系统的设计风格，主要特点：</p>
+            <ul>
+                <li><strong>沉浸式体验：</strong>模拟真实iPhone界面，包括状态栏和底部导航栏</li>
+                <li><strong>简洁明了：</strong>清晰的信息层次和直观的交互设计</li>
+                <li><strong>视觉一致：</strong>统一的配色方案和组件样式</li>
+                <li><strong>细节优化：</strong>圆角、阴影、过渡等精细设计元素，提升用户体验</li>
+            </ul>
+            <p>该高保真原型可直接用于开发参考，包含了所有主要界面和核心交互流程。</p>
+        </div>
+    </div>
+</body>
+</html>

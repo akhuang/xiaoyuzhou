@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宇宙播客 - 个人中心</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-left">9:41</div>
+        <div class="status-bar-center"></div>
+        <div class="status-bar-right">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi" style="margin-left: 6px;"></i>
+            <i class="fas fa-battery-full" style="margin-left: 6px;"></i>
+        </div>
+    </div>
+    
+    <!-- 主内容区域 -->
+    <div class="content hide-scrollbar">
+        <div class="profile-header">
+            <img src="img/profile.jpg" alt="头像" class="profile-avatar">
+            <div>
+                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px; color: var(--text-primary);">播客爱好者</div>
+                <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 8px;">@podcast_lover</div>
+                <div style="font-size: 14px; color: var(--text-tertiary); font-weight: 500;">已加入小宇宙 2 年</div>
+            </div>
+        </div>
+        
+        <!-- 收听数据 -->
+        <div class="stats-card">
+            <div class="stat-item">
+                <div class="stat-value">156</div>
+                <div class="stat-label">订阅</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value">42</div>
+                <div class="stat-label">收藏</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value">89</div>
+                <div class="stat-label">评论</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value">925</div>
+                <div class="stat-label">小时</div>
+            </div>
+        </div>
+        
+        <!-- 收听记录 -->
+        <div class="menu-list">
+            <div style="font-weight: 700; font-size: 18px; padding: 16px 18px; color: var(--text-primary);">收听记录</div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="menu-title">最近收听</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="menu-title">我的收藏</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="menu-title">下载管理</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- 账户设置 -->
+        <div class="menu-list">
+            <div style="font-weight: 700; font-size: 18px; padding: 16px 18px; color: var(--text-primary);">账户设置</div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="menu-title">账户信息</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="menu-title">通知设置</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="menu-title">外观设置</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="menu-title">通用设置</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-left">
+                    <div class="menu-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="menu-title">帮助与反馈</div>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部Tab导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <i class="fas fa-home tab-icon"></i>
+            <span>首页</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-search tab-icon"></i>
+            <span>发现</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-headphones tab-icon"></i>
+            <span>订阅</span>
+        </div>
+        <div class="tab-item active">
+            <i class="fas fa-user tab-icon"></i>
+            <span>我的</span>
+        </div>
+    </div>
+
+    <!-- 迷你播放器 -->
+    <div class="player-container">
+        <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
+        <div class="player-info">
+            <div class="player-title">数字化转型的关键因素</div>
+            <div class="player-show">商业内幕</div>
+        </div>
+        <div class="player-controls">
+            <i class="fas fa-step-backward"></i>
+            <div class="player-play-btn">
+                <i class="fas fa-play" style="font-size: 14px;"></i>
+            </div>
+            <i class="fas fa-step-forward"></i>
+        </div>
+    </div>
+</body>
+</html>

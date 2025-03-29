@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宇宙播客 - 首页</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-left">9:41</div>
+        <div class="status-bar-center"></div>
+        <div class="status-bar-right">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi" style="margin-left: 6px;"></i>
+            <i class="fas fa-battery-full" style="margin-left: 6px;"></i>
+        </div>
+    </div>
+    
+    <!-- 主内容区域 -->
+    <div class="content hide-scrollbar">
+        <h1 style="font-size: 28px; margin-bottom: 24px;">发现</h1>
+
+        <!-- 精选播客 -->
+        <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="font-size: 20px; font-weight: 700; margin: 0;">精选播客</h2>
+                <span style="color: var(--primary-color); font-size: 14px;">查看更多</span>
+            </div>
+            <div class="card">
+                <img src="img/banner.jpg" alt="精选播客" style="width: 100%; height: 180px; object-fit: cover;">
+                <div style="padding: 16px;">
+                    <div style="font-weight: 700; font-size: 18px; margin-bottom: 8px;">科技与商业的交叉点</div>
+                    <div style="color: var(--text-secondary); font-size: 14px; margin-bottom: 12px;">探索科技如何改变商业模式及未来趋势</div>
+                    <div class="podcast-stats">
+                        <i class="far fa-calendar"></i>
+                        <span>每周二更新</span>
+                        <i class="far fa-clock"></i>
+                        <span>45分钟</span>
+                        <i class="fas fa-headphones"></i>
+                        <span>298.5万</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 热门剧集 -->
+        <div style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="font-size: 20px; font-weight: 700; margin: 0;">热门剧集</h2>
+                <span style="color: var(--primary-color); font-size: 14px;">查看更多</span>
+            </div>
+            
+            <div class="card">
+                <div class="podcast-item">
+                    <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="podcast-image">
+                    <div class="podcast-info">
+                        <div class="podcast-title">数字化转型的关键因素</div>
+                        <div class="podcast-host">商业内幕</div>
+                        <div class="podcast-stats">
+                            <i class="far fa-clock"></i>
+                            <span>36分钟</span>
+                            <i class="fas fa-headphones"></i>
+                            <span>12.5万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="podcast-item">
+                    <img src="img/podcasts/podcast2.jpg" alt="播客封面" class="podcast-image">
+                    <div class="podcast-info">
+                        <div class="podcast-title">深度对话：人工智能的未来</div>
+                        <div class="podcast-host">科技前沿</div>
+                        <div class="podcast-stats">
+                            <i class="far fa-clock"></i>
+                            <span>52分钟</span>
+                            <i class="fas fa-headphones"></i>
+                            <span>18.2万</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="podcast-item">
+                    <img src="img/podcasts/podcast3.jpg" alt="播客封面" class="podcast-image">
+                    <div class="podcast-info">
+                        <div class="podcast-title">通过创意思维解决问题</div>
+                        <div class="podcast-host">创意工作坊</div>
+                        <div class="podcast-stats">
+                            <i class="far fa-clock"></i>
+                            <span>28分钟</span>
+                            <i class="fas fa-headphones"></i>
+                            <span>9.7万</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 推荐播客 -->
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="font-size: 20px; font-weight: 700; margin: 0;">为你推荐</h2>
+                <span style="color: var(--primary-color); font-size: 14px;">查看更多</span>
+            </div>
+            
+            <div class="horizontal-scroll" style="display: flex; padding-bottom: 20px;">
+                <div style="flex-shrink: 0; width: 120px; margin-right: 12px;">
+                    <img src="img/podcasts/podcast4.jpg" alt="播客封面" class="podcast-cover" style="width: 120px; height: 120px; margin-bottom: 8px;">
+                    <div style="font-weight: 500; font-size: 14px; margin-bottom: 4px;">全球经济观察</div>
+                    <div style="color: var(--text-secondary); font-size: 12px;">每周财经解析</div>
+                </div>
+                
+                <div style="flex-shrink: 0; width: 120px; margin-right: 12px;">
+                    <img src="img/podcasts/podcast5.jpg" alt="播客封面" class="podcast-cover" style="width: 120px; height: 120px; margin-bottom: 8px;">
+                    <div style="font-weight: 500; font-size: 14px; margin-bottom: 4px;">文化沙龙</div>
+                    <div style="color: var(--text-secondary); font-size: 12px;">深度文化访谈</div>
+                </div>
+                
+                <div style="flex-shrink: 0; width: 120px; margin-right: 12px;">
+                    <img src="img/podcasts/podcast6.jpg" alt="播客封面" class="podcast-cover" style="width: 120px; height: 120px; margin-bottom: 8px;">
+                    <div style="font-weight: 500; font-size: 14px; margin-bottom: 4px;">科学前沿</div>
+                    <div style="color: var(--text-secondary); font-size: 12px;">最新科研突破</div>
+                </div>
+                
+                <div style="flex-shrink: 0; width: 120px;">
+                    <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="podcast-cover" style="width: 120px; height: 120px; margin-bottom: 8px;">
+                    <div style="font-weight: 500; font-size: 14px; margin-bottom: 4px;">职场攻略</div>
+                    <div style="color: var(--text-secondary); font-size: 12px;">职业发展指南</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部Tab导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <i class="fas fa-home tab-icon"></i>
+            <span>首页</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-search tab-icon"></i>
+            <span>发现</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-headphones tab-icon"></i>
+            <span>订阅</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-user tab-icon"></i>
+            <span>我的</span>
+        </div>
+    </div>
+
+    <!-- 迷你播放器 -->
+    <div class="player-container">
+        <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
+        <div class="player-info">
+            <div class="player-title">数字化转型的关键因素</div>
+            <div class="player-show">商业内幕</div>
+        </div>
+        <div class="player-controls">
+            <i class="fas fa-step-backward"></i>
+            <div class="player-play-btn">
+                <i class="fas fa-play" style="font-size: 14px;"></i>
+            </div>
+            <i class="fas fa-step-forward"></i>
+        </div>
+    </div>
+</body>
+</html>

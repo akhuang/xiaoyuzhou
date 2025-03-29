@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小宇宙播客 - 播客详情</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .content {
+            padding-bottom: 70px;
+        }
+        
+        .subscribe-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 32px;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(255, 79, 94, 0.25);
+            transition: all 0.2s ease;
+        }
+        
+        .subscribe-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 6px rgba(255, 79, 94, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部状态栏 -->
+    <div class="status-bar">
+        <div class="status-bar-left">9:41</div>
+        <div class="status-bar-center"></div>
+        <div class="status-bar-right">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi" style="margin-left: 6px;"></i>
+            <i class="fas fa-battery-full" style="margin-left: 6px;"></i>
+        </div>
+    </div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 返回按钮 -->
+        <div style="margin-bottom: 16px;">
+            <i class="fas fa-chevron-left" style="font-size: 16px;"></i>
+        </div>
+        
+        <!-- 播客头部信息 -->
+        <div class="podcast-header">
+            <img src="img/podcasts/podcast1.jpg" alt="播客封面" class="podcast-detail-cover">
+            <div class="podcast-detail-title">商业内幕</div>
+            <div class="podcast-detail-host">商业见解传媒</div>
+            <button class="subscribe-btn">订阅</button>
+            
+            <div style="display: flex; justify-content: center; gap: 8px; margin-top: 8px; color: var(--text-secondary); font-size: 14px;">
+                <span>周更</span>
+                <span>·</span>
+                <span>最新更新: 今天</span>
+            </div>
+        </div>
+        
+        <!-- 操作按钮 -->
+        <div class="podcast-action-row">
+            <div class="podcast-action">
+                <i class="fas fa-share-alt"></i>
+                <span>分享</span>
+            </div>
+            
+            <div class="podcast-action">
+                <i class="far fa-heart"></i>
+                <span>收藏</span>
+            </div>
+            
+            <div class="podcast-action">
+                <i class="fas fa-download"></i>
+                <span>下载</span>
+            </div>
+            
+            <div class="podcast-action">
+                <i class="fas fa-ellipsis-h"></i>
+                <span>更多</span>
+            </div>
+        </div>
+        
+        <!-- 播客简介 -->
+        <div style="margin: 20px 0; padding: 16px; background-color: var(--card-bg); border-radius: 16px;">
+            <div style="font-weight: 600; margin-bottom: 12px;">播客简介</div>
+            <div style="color: var(--text-secondary); font-size: 14px; line-height: 1.5;">
+                这是一个关注商业趋势与数字化转型的深度访谈播客。我们邀请行业领袖、创新者和思想家，共同探讨正在改变商业格局的关键因素和策略。每周二更新，带你了解最前沿的商业见解。
+            </div>
+            <div style="color: var(--primary-color); font-size: 14px; margin-top: 8px;">展开更多</div>
+        </div>
+        
+        <!-- 剧集列表 -->
+        <div>
+            <div class="episode-list-header">
+                <div class="episode-list-title">全部剧集</div>
+                <div class="episode-sort">
+                    <i class="fas fa-sort-amount-down"></i>
+                    <span>最新</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="episode-item">
+                    <div class="episode-date">2025/03/26</div>
+                    <div class="episode-title">数字化转型的关键因素</div>
+                    <div class="episode-desc">
+                        在这一集中，我们与多位数字化转型专家探讨了企业如何有效地实施数字化战略，以及在这个过程中可能面临的挑战和解决方案。
+                    </div>
+                    <div class="episode-footer">
+                        <div>
+                            <i class="far fa-clock"></i>
+                            <span style="margin-left: 4px;">36分钟</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play-circle"></i>
+                            <span style="margin-left: 4px;">播放</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="episode-item">
+                    <div class="episode-date">2025/03/19</div>
+                    <div class="episode-title">数据驱动的决策模型</div>
+                    <div class="episode-desc">
+                        我们邀请了数据科学家和企业决策者，讨论如何利用大数据和AI技术来优化业务流程和战略决策，提高企业竞争力。
+                    </div>
+                    <div class="episode-footer">
+                        <div>
+                            <i class="far fa-clock"></i>
+                            <span style="margin-left: 4px;">42分钟</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play-circle"></i>
+                            <span style="margin-left: 4px;">播放</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="episode-item">
+                    <div class="episode-date">2025/03/12</div>
+                    <div class="episode-title">远程工作的未来趋势</div>
+                    <div class="episode-desc">
+                        疫情后的工作模式正在发生巨大变革，我们探讨了远程和混合工作模式如何重塑企业文化、团队协作和生产力。
+                    </div>
+                    <div class="episode-footer">
+                        <div>
+                            <i class="far fa-clock"></i>
+                            <span style="margin-left: 4px;">39分钟</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play-circle"></i>
+                            <span style="margin-left: 4px;">播放</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="episode-item">
+                    <div class="episode-date">2025/03/05</div>
+                    <div class="episode-title">可持续发展与企业责任</div>
+                    <div class="episode-desc">
+                        与行业专家和可持续发展领袖讨论企业如何通过环保实践和社会责任创造长期价值，同时应对气候变化挑战。
+                    </div>
+                    <div class="episode-footer">
+                        <div>
+                            <i class="far fa-clock"></i>
+                            <span style="margin-left: 4px;">45分钟</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-play-circle"></i>
+                            <span style="margin-left: 4px;">播放</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部Tab导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <i class="fas fa-home tab-icon"></i>
+            <span>首页</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-search tab-icon"></i>
+            <span>发现</span>
+        </div>
+        <div class="tab-item active">
+            <i class="fas fa-headphones tab-icon"></i>
+            <span>订阅</span>
+        </div>
+        <div class="tab-item">
+            <i class="fas fa-user tab-icon"></i>
+            <span>我的</span>
+        </div>
+    </div>
+
+    <!-- 迷你播放器 -->
+    <div class="player-container">
+        <img src="img/podcasts/podcast1.jpg" alt="播放中的封面" class="player-cover">
+        <div class="player-info">
+            <div class="player-title">数字化转型的关键因素</div>
+            <div class="player-show">商业内幕</div>
+        </div>
+        <div class="player-controls">
+            <i class="fas fa-step-backward"></i>
+            <div class="player-play-btn">
+                <i class="fas fa-play" style="font-size: 14px;"></i>
+            </div>
+            <i class="fas fa-step-forward"></i>
+        </div>
+    </div>
+</body>
+</html>
