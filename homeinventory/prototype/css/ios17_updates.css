@@ -999,17 +999,25 @@ body.ios-modern {
     background-color: rgba(255, 59, 48, 0.9);
 }
 
-/* Segmented Control Styles */
+/* Segmented Control Styles - 优化次级导航 */
+.ios-segment-container {
+    margin: 10px 16px 16px;
+    padding: 0;
+    background: transparent;
+}
+
 .ios-segment-control {
     display: flex;
     overflow-x: auto;
-    background-color: rgba(118, 118, 128, 0.12);
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
     padding: 2px;
-    margin: 5px 0;
+    margin: 0;
     scrollbar-width: none;
     -ms-overflow-style: none;
     -webkit-overflow-scrolling: touch;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    border: 0.5px solid rgba(0, 0, 0, 0.03);
 }
 
 .ios-segment-control::-webkit-scrollbar {
@@ -1019,41 +1027,27 @@ body.ios-modern {
 .ios-segment-item {
     flex: 1;
     min-width: fit-content;
-    padding: 8px 14px;
+    padding: 8px 18px;
     text-align: center;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 15px;
+    font-weight: 590;
     color: var(--ios-text-secondary);
-    border-radius: 7px;
-    transition: all 0.2s ease;
+    border-radius: 9px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     white-space: nowrap;
+    position: relative;
+    margin: 2px;
+    letter-spacing: -0.2px;
 }
 
 .ios-segment-item.active {
     background-color: white;
     color: var(--ios-text-primary);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-weight: 600;
 }
 
 .ios-segment-item:active:not(.active) {
-    background-color: rgba(118, 118, 128, 0.18);
-}
-
-/* Menu List Item Details */
-.ios-menu-item-detail {
-    padding-left: 0;
-    padding-top: 0;
-    border-top: none;
-}
-
-.ios-menu-subtitle {
-    font-size: 14px;
-    color: var(--ios-text-tertiary);
-    margin-top: 3px;
-}
-
-.ios-menu-caption {
-    font-size: 12px;
-    color: var(--ios-text-quaternary);
-    margin-top: 2px;
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: scale(0.98);
 }

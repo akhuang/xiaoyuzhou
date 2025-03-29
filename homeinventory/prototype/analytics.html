@@ -6,6 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>家物管家 - 数据分析</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -15,6 +17,67 @@
     <link rel="stylesheet" href="css/ios17_updates.css">
     <!-- ChartJS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+  
+        .ios-card {
+            border-radius: 16px !important; /* Ensure all cards have proper rounding */
+            overflow: hidden;
+            margin-bottom: 10px; /* Add consistent spacing between cards */
+        }
+        
+        /* Last card needs bottom margin for proper spacing */
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        
+        /* Better secondary navigation styling */
+        .ios-segment-control {
+            display: flex;
+            background-color: var(--ios-bg-secondary);
+            border-radius: 10px;
+            padding: 4px;
+            margin: 16px 0;
+        }
+        
+        .ios-segment-item {
+            flex: 1;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ios-text-secondary);
+            position: relative;
+            border-radius: 8px;
+        }
+        
+        .ios-segment-item.active {
+            background-color: white;
+            color: var(--ios-blue);
+            box-shadow: var(--ios-shadow-sm);
+        }
+      
+        /* Stats grid styling to ensure rounded corners */
+        .ios-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .ios-stat-card {
+            background-color: var(--ios-bg-secondary);
+            border-radius: 16px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: var(--ios-shadow-sm);
+        }
+        
+        .ios-chart-container {
+            position: relative;
+            height: 200px;
+            margin: 5px 0 10px;
+        }
+    </style>
 </head>
 <body class="ios-modern">
     <div class="ios-frame">

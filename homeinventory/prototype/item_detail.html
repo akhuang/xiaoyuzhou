@@ -6,6 +6,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>家物管家 - 物品详情</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -14,14 +16,22 @@
     <link rel="stylesheet" href="css/ios_modern.css">
     <link rel="stylesheet" href="css/ios17_updates.css">
     <style>
+        
         /* 特定于此页面的样式，无法通过共享样式处理的 */
         .ios-item-image-slider {
             height: 300px;
-            width: 100%;
+            width: calc(100% - 32px); /* 减少宽度，为左右边距留出空间 */
             position: relative;
             background-size: cover;
             background-position: center;
-            border-radius: 0;
+            border-radius: 16px;
+            margin: 24px 16px; /* 调整为上右下左四个方向都有边距 */
+            overflow: hidden;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
+        
+        .mb-20 {
+            margin-bottom: 20px;
         }
         
         .ios-image-counter {
@@ -188,9 +198,26 @@
             justify-content: space-between; 
             width: 100%;
         }
+        
+        /* Make sure all cards have proper rounded corners */
+        .ios-card {
+            border-radius: 16px !important;
+            overflow: hidden;
+            margin-bottom: 16px; /* 增加卡片之间的间距 */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03); /* 轻微阴影增强视觉效果 */
+        }
+
+        /* 调整顶部标题与内容的间距 */
+        .ios-header-large {
+            margin-bottom: 16px; /* 确保标题与图片滑块间有足够间距 */
+        }
+
+ 
+ 
     </style>
 </head>
 <body class="ios-modern">
+    <!-- 只保留一个 ios-frame 框架 -->
     <div class="ios-frame">
         <!-- Dynamic Island -->
         <div class="dynamic-island"></div>
@@ -207,14 +234,14 @@
 
         <!-- App Content -->
         <div class="app-content ios-content">
-            <!-- Header -->
-            <div class="ios-header">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
                 <div class="ios-header-title-container">
-                    <a href="items.html" class="ios-action-icon">
+                    <a href="items.html" class="ios-action-icon" style="text-decoration: none;">
                         <i class="fa-solid fa-arrow-left"></i>
                     </a>
                     <h2>物品详情</h2>
-                    <a href="#" class="ios-action-icon">
+                    <a href="#" class="ios-action-icon" style="text-decoration: none;">
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                     </a>
                 </div>
