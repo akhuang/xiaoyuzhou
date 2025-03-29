@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 添加物品</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+</head>
+<body class="ios-modern">
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header -->
+            <div class="ios-header-large">
+                <div class="ios-header-actions">
+                    <a href="items.html" class="ios-action-icon">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+                <h1>添加物品</h1>
+                <div class="ios-header-actions">
+                    <a href="#" class="ios-action-icon">
+                        <i class="fa-solid fa-barcode"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Form Content -->
+            <div class="ios-card">
+                <div class="ios-card-content">
+                    <!-- Photo Upload -->
+                    <div class="ios-form-group">
+                        <div class="ios-profile-header">
+                            <div class="ios-avatar bg-gray-100">
+                                <i class="fa-solid fa-camera color-gray"></i>
+                            </div>
+                            <div class="ios-user-info">添加物品照片</div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Info -->
+                    <div class="ios-form-group">
+                        <label class="ios-label">物品名称 *</label>
+                        <input type="text" class="ios-input" placeholder="输入物品名称">
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label class="ios-label">分类 *</label>
+                        <select class="ios-input ios-select">
+                            <option>选择分类</option>
+                            <option>食品</option>
+                            <option>电子产品</option>
+                            <option>药品</option>
+                            <option>服装</option>
+                            <option>儿童用品</option>
+                            <option>家居用品</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+
+                    <div class="ios-form-group">
+                        <div class="ios-segment-control">
+                            <div class="ios-segment-item active">基本信息</div>
+                            <div class="ios-segment-item">详细信息</div>
+                            <div class="ios-segment-item">库存设置</div>
+                        </div>
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label class="ios-label">数量和单位</label>
+                        <div class="flex gap-3">
+                            <input type="number" class="ios-input" value="1" style="flex: 0.4">
+                            <input type="text" class="ios-input" placeholder="个/瓶/件..." style="flex: 0.6">
+                        </div>
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label class="ios-label">品牌</label>
+                        <input type="text" class="ios-input" placeholder="输入品牌名称">
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label class="ios-label">型号</label>
+                        <input type="text" class="ios-input" placeholder="输入型号">
+                    </div>
+
+                    <div class="ios-form-group">
+                        <label class="ios-label">价格 (¥)</label>
+                        <input type="number" class="ios-input" placeholder="0.00">
+                    </div>
+
+                    <!-- Dates -->
+                    <div class="ios-form-group">
+                        <label class="ios-label">购买日期</label>
+                        <input type="date" class="ios-input" value="2025-03-29">
+                    </div>
+
+                    <div class="ios-form-group">
+                        <div class="flex justify-between items-center">
+                            <label class="ios-label mb-0">保质期/有效期</label>
+                            <div class="ios-switch">
+                                <input type="checkbox" id="has-expiry" checked>
+                                <label for="has-expiry"></label>
+                            </div>
+                        </div>
+                        <input type="date" class="ios-input mt-5" value="2025-06-29">
+                    </div>
+
+                    <!-- Location -->
+                    <div class="ios-form-group">
+                        <label class="ios-label">存放位置</label>
+                        <input type="text" class="ios-input" placeholder="选择存放位置">
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="ios-form-group">
+                        <label class="ios-label">备注</label>
+                        <textarea class="ios-input ios-textarea" placeholder="添加物品备注信息..."></textarea>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="ios-form-group">
+                        <label class="ios-label">标签</label>
+                        <input type="text" class="ios-input" placeholder="添加标签，用逗号分隔">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed Bottom Buttons -->
+            <div class="ios-card mt-10">
+                <div class="ios-card-content">
+                    <div class="flex gap-3">
+                        <button class="ios-button flex-1">保存为草稿</button>
+                        <button class="ios-button-primary flex-1">添加物品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="home.html" class="ios-nav-item nav-item" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="items.html" class="ios-nav-item nav-item active" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="shopping_list.html" class="ios-nav-item nav-item" data-page="shopping">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>购物</span>
+            </a>
+            <a href="reminders.html" class="ios-nav-item nav-item" data-page="reminders">
+                <i class="fa-solid fa-bell"></i>
+                <span>提醒</span>
+            </a>
+            <a href="profile.html" class="ios-nav-item nav-item" data-page="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>

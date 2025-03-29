@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 家庭管理</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+</head>
+<body class="ios-modern">
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
+                <h1>家庭管理</h1>
+            </div>
+
+            <!-- Current Home -->
+            <div class="ios-card">
+                <div class="ios-card-content">
+                    <div class="ios-home-info-container">
+                        <div class="ios-home-icon">
+                            家
+                        </div>
+                        <div class="ios-home-info">
+                            <div class="ios-home-title">我的家</div>
+                            <div class="ios-home-subtitle">4位成员 · 128件物品</div>
+                        </div>
+                        <button class="ios-button ios-button-small">
+                            管理
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Members -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">家庭成员</div>
+                    <a href="#" class="ios-card-action">邀请</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <!-- Admin User -->
+                        <div class="ios-menu-item">
+                            <div class="ios-user-avatar">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="张三">
+                            </div>
+                            <div class="ios-menu-detail-wide">
+                                <div class="ios-user-badges">
+                                    <div class="fw-500 mr-2">张三</div>
+                                    <span class="ios-badge ios-badge-primary">管理员</span>
+                                    <span class="ios-badge ios-badge-secondary ios-badge-margin">你</span>
+                                </div>
+                                <div class="ios-activity-meta">上次活动: 刚刚</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Regular Users -->
+                        <div class="ios-menu-item">
+                            <div class="ios-user-avatar">
+                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="李四">
+                            </div>
+                            <div class="ios-menu-title">李四</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-ellipsis-vertical color-gray"></i>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-avatar-spacer"></div>
+                            <div class="ios-activity-meta">上次活动: 今天 15:20</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-user-avatar">
+                                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="王五">
+                            </div>
+                            <div class="ios-menu-title">王五</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-ellipsis-vertical color-gray"></i>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-avatar-spacer"></div>
+                            <div class="ios-activity-meta">上次活动: 昨天 09:45</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-user-avatar">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="赵六">
+                            </div>
+                            <div class="ios-menu-title">赵六</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-ellipsis-vertical color-gray"></i>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-avatar-spacer"></div>
+                            <div class="ios-activity-meta">上次活动: 3天前</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activity Log -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">最近活动</div>
+                    <a href="#" class="ios-card-action">查看全部</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-activity-avatar">
+                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="李四">
+                            </div>
+                            <div class="ios-menu-title">李四</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-activity-meta">20分钟前</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-activity-content">添加了物品「牛奶」到购物清单</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-activity-avatar">
+                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="张三">
+                            </div>
+                            <div class="ios-menu-title">张三</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-activity-meta">1小时前</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-activity-content">添加了新物品「无线耳机」</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-activity-avatar">
+                                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="王五">
+                            </div>
+                            <div class="ios-menu-title">王五</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-activity-meta">昨天</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-activity-content">完成购物任务「购买洗衣液」</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-activity-avatar">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="赵六">
+                            </div>
+                            <div class="ios-menu-title">赵六</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-activity-meta">3天前</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-activity-content">更新了物品「儿童T恤」的位置信息</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Permissions -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">权限管理</div>
+                    <a href="#" class="ios-card-action">编辑</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-blue-light">
+                                <i class="fa-solid fa-user-shield color-blue"></i>
+                            </div>
+                            <div class="ios-menu-title">管理员权限</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-badge ios-badge-primary">1人</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-menu-description">可以管理家庭成员、删除物品、导出数据等</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-menu-icon bg-green-light">
+                                <i class="fa-solid fa-pencil color-green"></i>
+                            </div>
+                            <div class="ios-menu-title">编辑权限</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-badge ios-badge-secondary">3人</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-menu-description">可以添加、编辑家庭物品和管理购物清单</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-menu-icon bg-gray-light">
+                                <i class="fa-solid fa-eye color-gray"></i>
+                            </div>
+                            <div class="ios-menu-title">只读权限</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-badge ios-badge-secondary">0人</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-menu-description">只能查看家庭物品和购物清单，不能添加或编辑</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Invitations -->
+            <div class="ios-card mb-20">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">邀请新成员</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-blue-light">
+                                <i class="fa-solid fa-link color-blue"></i>
+                            </div>
+                            <div class="ios-menu-title">分享邀请链接</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-primary ios-button-small">生成</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-activity-meta">生成一个链接邀请他人加入</div>
+                        </div>
+                        
+                        <div class="ios-menu-item ios-activity-container">
+                            <div class="ios-menu-icon bg-blue-light">
+                                <i class="fa-solid fa-qrcode color-blue"></i>
+                            </div>
+                            <div class="ios-menu-title">二维码邀请</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">显示</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-activity-detail">
+                            <div class="ios-activity-spacer"></div>
+                            <div class="ios-activity-meta">面对面邀请最方便</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Tab Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="home.html" class="ios-nav-item nav-item" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="items.html" class="ios-nav-item nav-item" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="shopping_list.html" class="ios-nav-item nav-item" data-page="shopping">
+                <i class="fa-solid fa-list-check"></i>
+                <span>购物</span>
+            </a>
+            <a href="family.html" class="ios-nav-item nav-item active" data-page="family">
+                <i class="fa-solid fa-users"></i>
+                <span>家庭</span>
+            </a>
+            <a href="profile.html" class="ios-nav-item nav-item" data-page="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>

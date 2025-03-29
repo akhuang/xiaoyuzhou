@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 个人中心</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+</head>
+<body class="ios-modern">
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
+                <h1>个人中心</h1>
+            </div>
+
+            <!-- User Profile Card -->
+            <div class="ios-card">
+                <div class="ios-card-content">
+                    <div class="ios-profile-header">
+                        <div class="ios-avatar" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                        <div class="ios-username">张三</div>
+                        <div class="ios-user-info">zhang.san@example.com</div>
+                        <button class="ios-button mt-5">编辑资料</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Management -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">家庭管理</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-blue-light">
+                                <i class="fa-solid fa-users color-blue"></i>
+                            </div>
+                            <div class="ios-menu-title">家庭成员</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-orange-light">
+                                <i class="fa-solid fa-house color-orange"></i>
+                            </div>
+                            <div class="ios-menu-title">家庭空间管理</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-green-light">
+                                <i class="fa-solid fa-key color-green"></i>
+                            </div>
+                            <div class="ios-menu-title">权限设置</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Share -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">数据与分享</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-purple-light">
+                                <i class="fa-solid fa-file-export color-purple"></i>
+                            </div>
+                            <div class="ios-menu-title">导出数据</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-blue-light">
+                                <i class="fa-solid fa-file-import color-blue"></i>
+                            </div>
+                            <div class="ios-menu-title">导入数据</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-teal-light">
+                                <i class="fa-solid fa-cloud-arrow-up color-teal"></i>
+                            </div>
+                            <div class="ios-menu-title">云同步设置</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-tag bg-blue-light color-blue">已开启</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Settings -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">应用设置</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-red-light">
+                                <i class="fa-solid fa-bell color-red"></i>
+                            </div>
+                            <div class="ios-menu-title">通知设置</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-yellow-light">
+                                <i class="fa-solid fa-palette color-yellow"></i>
+                            </div>
+                            <div class="ios-menu-title">外观设置</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-green-light">
+                                <i class="fa-solid fa-language color-green"></i>
+                            </div>
+                            <div class="ios-menu-title">语言</div>
+                            <div class="ios-menu-detail">
+                                <span>中文</span>
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support & Feedback -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">支持与反馈</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-orange-light">
+                                <i class="fa-solid fa-circle-question color-orange"></i>
+                            </div>
+                            <div class="ios-menu-title">帮助中心</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-green-light">
+                                <i class="fa-solid fa-message color-green"></i>
+                            </div>
+                            <div class="ios-menu-title">联系我们</div>
+                            <div class="ios-menu-detail">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <div class="ios-card mt-10">
+                <div class="ios-card-content">
+                    <button class="ios-button-danger">退出登录</button>
+                </div>
+            </div>
+
+            <!-- Version Info -->
+            <div class="mt-5 mb-20 text-center">
+                <div class="text-xs text-gray-500">
+                    家物管家 v1.0.0<br>
+                    © 2025 家物管家. 保留所有权利
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="home.html" class="ios-nav-item nav-item" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="items.html" class="ios-nav-item nav-item" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="shopping_list.html" class="ios-nav-item nav-item" data-page="shopping">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>购物</span>
+            </a>
+            <a href="reminders.html" class="ios-nav-item nav-item" data-page="reminders">
+                <i class="fa-solid fa-bell"></i>
+                <span>提醒</span>
+            </a>
+            <a href="profile.html" class="ios-nav-item nav-item active" data-page="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>

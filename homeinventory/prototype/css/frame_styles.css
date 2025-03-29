@@ -1,0 +1,28 @@
+/* 共享框架变量 */
+:root {
+  --frame-border-radius: 55px;
+  --frame-border-color: #111111;
+  --frame-border-width: 12px;
+  --frame-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  --frame-bg-color: #F2F2F7;
+}
+
+/* 隐藏滚动条 - 共享样式 */
+.device-frame-content::-webkit-scrollbar,
+.ios-content::-webkit-scrollbar {
+  display: none;
+}
+
+.device-frame-content,
+.ios-content {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* Dynamic Island - 只定义基础变量，不包含定位代码 */
+:root {
+  --dynamic-island-width: 120px;
+  --dynamic-island-height: 35px;
+  --dynamic-island-radius: 20px;
+  --dynamic-island-color: #000;
+}

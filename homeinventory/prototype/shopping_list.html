@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 购物清单</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+</head>
+<body class="ios-modern">
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
+                <h1>购物清单</h1>
+                <div class="ios-header-actions">
+                    <a href="#" class="ios-action-icon">
+                        <i class="fa-solid fa-share"></i>
+                    </a>
+                    <a href="#" class="ios-action-icon">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="ios-card">
+                <div class="ios-card-content">
+                    <div class="ios-segment-control">
+                        <div class="ios-segment-item active">当前清单</div>
+                        <div class="ios-segment-item">历史记录</div>
+                        <div class="ios-segment-item">定期采购</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shopping List -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">家庭购物清单</div>
+                </div>
+                <div class="ios-card-content">
+                    <!-- Progress Bar -->
+                    <div class="flex justify-between items-center mb-15">
+                        <div class="flex-1">
+                            <div class="ios-menu-subtitle mb-5">完成进度</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        <div class="ml-12 font-medium">4/10</div>
+                    </div>
+
+                    <div class="ios-menu-list">
+                        <!-- Unchecked Items -->
+                        <div class="ios-menu-item">
+                            <div class="ios-checkbox-unchecked"></div>
+                            <div class="ios-menu-title">有机牛奶</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-badge ios-badge-danger">急需</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">2瓶 · 食品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-unchecked"></div>
+                            <div class="ios-menu-title">苹果</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">6个 · 食品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-unchecked"></div>
+                            <div class="ios-menu-title">儿童感冒药</div>
+                            <div class="ios-menu-detail">
+                                <span class="ios-badge ios-badge-danger">急需</span>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">1盒 · 药品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-unchecked"></div>
+                            <div class="ios-menu-title">洗衣液</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">2瓶 · 家居用品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-unchecked"></div>
+                            <div class="ios-menu-title">AAA电池</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">1包 · 电子产品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-unchecked"></div>
+                            <div class="ios-menu-title">夏季儿童短袖</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">2件 · 服装</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Completed Items -->
+            <div class="ios-card">
+                <div class="ios-card-header clickable" id="completedItemsHeader">
+                    <div class="ios-card-title">
+                        <i class="fa-solid fa-check-circle color-blue mr-2"></i>
+                        已完成 (4)
+                    </div>
+                    <i class="fa-solid fa-chevron-down color-gray"></i>
+                </div>
+                <div class="ios-card-content" id="completedItemsList">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-checkbox-checked">
+                                <i class="fa-solid fa-check" style="font-size: 10px;"></i>
+                            </div>
+                            <div class="ios-menu-title ios-item-completed">面包</div>
+                            <div class="ios-menu-detail color-gray">今天</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">1个 · 食品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-checked">
+                                <i class="fa-solid fa-check" style="font-size: 10px;"></i>
+                            </div>
+                            <div class="ios-menu-title ios-item-completed">纸巾</div>
+                            <div class="ios-menu-detail color-gray">今天</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">2包 · 家居用品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-checked">
+                                <i class="fa-solid fa-check" style="font-size: 10px;"></i>
+                            </div>
+                            <div class="ios-menu-title ios-item-completed">香蕉</div>
+                            <div class="ios-menu-detail color-gray">昨天</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">5根 · 食品</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-checkbox-checked">
+                                <i class="fa-solid fa-check" style="font-size: 10px;"></i>
+                            </div>
+                            <div class="ios-menu-title ios-item-completed">沐浴露</div>
+                            <div class="ios-menu-detail color-gray">昨天</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder"></div>
+                            <div class="ios-item-detail">1瓶 · 个人护理</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smart Suggestions -->
+            <div class="ios-card mb-20">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">智能购物建议</div>
+                    <a href="#" class="ios-card-action">查看全部</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-subtitle mb-12">
+                        <i class="fa-solid fa-lightbulb color-yellow mr-1"></i>
+                        根据您的购物习惯，建议您添加以下物品：
+                    </div>
+                    
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-item-image-sm" style="background-image: url('https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80');"></div>
+                            <div class="ios-menu-title">鸡蛋</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">添加</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder-image"></div>
+                            <div class="ios-item-detail">通常每两周购买一次</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-5">
+                            <div class="ios-item-image-sm" style="background-image: url('https://images.unsplash.com/photo-1600271886742-f049cd451bba?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80');"></div>
+                            <div class="ios-menu-title">卫生纸</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">添加</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-placeholder-image"></div>
+                            <div class="ios-item-detail">库存较低</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Action Button -->
+        <div class="ios-fab">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="home.html" class="ios-nav-item nav-item" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="items.html" class="ios-nav-item nav-item" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="shopping_list.html" class="ios-nav-item nav-item active" data-page="shopping">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>购物</span>
+            </a>
+            <a href="reminders.html" class="ios-nav-item nav-item" data-page="reminders">
+                <i class="fa-solid fa-bell"></i>
+                <span>提醒</span>
+            </a>
+            <a href="profile.html" class="ios-nav-item nav-item" data-page="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script>
+        document.getElementById('completedItemsHeader').addEventListener('click', function() {
+            const completedList = document.getElementById('completedItemsList');
+            const chevron = this.querySelector('.fa-chevron-down, .fa-chevron-up');
+            
+            if (completedList.style.display === 'none') {
+                completedList.style.display = 'block';
+                chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                completedList.style.display = 'none';
+                chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 数据分析</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+    <!-- ChartJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="ios-modern">
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
+                <h1>数据分析</h1>
+            </div>
+
+            <!-- Date Range Selector -->
+            <div class="ios-date-selector">
+                <button class="ios-button ios-button-small">
+                    <i class="fa-solid fa-calendar-alt mr-2"></i>
+                    本月
+                    <i class="fa-solid fa-chevron-down ml-2 text-xs"></i>
+                </button>
+                <div class="ios-menu-subtitle">
+                    2025年3月
+                </div>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="ios-stats-grid">
+                <div class="ios-stat-card">
+                    <div class="ios-stat-icon bg-red-light">
+                        <i class="fa-solid fa-yen-sign color-red"></i>
+                    </div>
+                    <p class="ios-stat-value">¥2,760</p>
+                    <p class="ios-stat-label">月度支出</p>
+                </div>
+                
+                <div class="ios-stat-card">
+                    <div class="ios-stat-icon bg-blue-light">
+                        <i class="fa-solid fa-cart-flatbed color-blue"></i>
+                    </div>
+                    <p class="ios-stat-value">42</p>
+                    <p class="ios-stat-label">新添物品</p>
+                </div>
+                
+                <div class="ios-stat-card">
+                    <div class="ios-stat-icon bg-yellow-light">
+                        <i class="fa-solid fa-chart-line color-yellow"></i>
+                    </div>
+                    <p class="ios-stat-value">+12%</p>
+                    <p class="ios-stat-label">对比上月</p>
+                </div>
+            </div>
+
+            <!-- Spending Chart -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">支出趋势</div>
+                    <a href="#" class="ios-card-action">查看详情</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Spending by Category -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">分类支出占比</div>
+                    <a href="#" class="ios-card-action">筛选</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    
+                    <div class="mt-10">
+                        <div class="ios-category-legend">
+                            <div class="flex-items-center">
+                                <div class="ios-legend-color" style="background-color: #2196F3;"></div>
+                                <span>食品</span>
+                            </div>
+                            <div class="fw-500">¥1,200 (43%)</div>
+                        </div>
+                        <div class="ios-category-legend">
+                            <div class="flex-items-center">
+                                <div class="ios-legend-color" style="background-color: #4CAF50;"></div>
+                                <span>家居用品</span>
+                            </div>
+                            <div class="fw-500">¥680 (25%)</div>
+                        </div>
+                        <div class="ios-category-legend">
+                            <div class="flex-items-center">
+                                <div class="ios-legend-color" style="background-color: #FFC107;"></div>
+                                <span>电子产品</span>
+                            </div>
+                            <div class="fw-500">¥450 (16%)</div>
+                        </div>
+                        <div class="ios-category-legend">
+                            <div class="flex-items-center">
+                                <div class="ios-legend-color" style="background-color: #F44336;"></div>
+                                <span>儿童用品</span>
+                            </div>
+                            <div class="fw-500">¥280 (10%)</div>
+                        </div>
+                        <div class="ios-category-legend border-none">
+                            <div class="flex-items-center">
+                                <div class="ios-legend-color" style="background-color: #9C27B0;"></div>
+                                <span>其他</span>
+                            </div>
+                            <div class="fw-500">¥150 (6%)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Consumption Patterns -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">消耗速度</div>
+                    <a href="#" class="ios-card-action">查看详情</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-chart-container">
+                        <canvas id="consumptionChart"></canvas>
+                    </div>
+                    <div class="text-small text-center color-gray">
+                        显示最近30天内消耗最快的5类物品
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Inventory Health -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">库存健康度</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-metric-row mb-15">
+                        <div class="ios-metric-value">76%</div>
+                        <div class="ios-metric-spacer">
+                            <div class="progress-container taller">
+                                <div class="progress-bar" style="width: 76%;"></div>
+                            </div>
+                        </div>
+                        <div class="ios-metric-label">良好</div>
+                    </div>
+                    
+                    <div>
+                        <div class="ios-metric-item">
+                            <div class="ios-metric-header">
+                                <div class="ios-metric-name">食品库存</div>
+                                <div class="ios-metric-percent">85%</div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="ios-metric-item">
+                            <div class="ios-metric-header">
+                                <div class="ios-metric-name">药品库存</div>
+                                <div class="ios-metric-percent">65%</div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar warning" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div class="ios-metric-item">
+                            <div class="ios-metric-header">
+                                <div class="ios-metric-name">家居用品库存</div>
+                                <div class="ios-metric-percent">90%</div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="ios-metric-item">
+                            <div class="ios-metric-header">
+                                <div class="ios-metric-name">电子产品配件库存</div>
+                                <div class="ios-metric-percent">45%</div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar danger" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Optimization Suggestions -->
+            <div class="ios-card mb-20">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">优化建议</div>
+                </div>
+                <div class="ios-card-content">
+                    <div>
+                        <div class="ios-suggestion">
+                            <div class="ios-suggestion-icon bg-blue-light">
+                                <i class="fa-solid fa-lightbulb color-blue"></i>
+                            </div>
+                            <div>
+                                <div class="ios-suggestion-title">减少购买频次</div>
+                                <div class="ios-suggestion-text">可考虑每月大批量采购，减少小额多次购买，预计每月可节省约¥200</div>
+                            </div>
+                        </div>
+                        <div class="ios-suggestion">
+                            <div class="ios-suggestion-icon bg-green-light">
+                                <i class="fa-solid fa-recycle color-green"></i>
+                            </div>
+                            <div>
+                                <div class="ios-suggestion-title">注意食品过期</div>
+                                <div class="ios-suggestion-text">过去3个月有8次食品过期浪费，建议适量采购并优先使用接近保质期的食品</div>
+                            </div>
+                        </div>
+                        <div class="ios-suggestion">
+                            <div class="ios-suggestion-icon bg-purple-light">
+                                <i class="fa-solid fa-chart-bar color-purple"></i>
+                            </div>
+                            <div>
+                                <div class="ios-suggestion-title">季节性消费提醒</div>
+                                <div class="ios-suggestion-text">根据去年同期数据，即将进入夏季，可提前规划夏季用品采购</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="home.html" class="ios-nav-item nav-item" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="items.html" class="ios-nav-item nav-item" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="shopping_list.html" class="ios-nav-item nav-item" data-page="shopping">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>购物</span>
+            </a>
+            <a href="reminders.html" class="ios-nav-item nav-item" data-page="reminders">
+                <i class="fa-solid fa-bell"></i>
+                <span>提醒</span>
+            </a>
+            <a href="profile.html" class="ios-nav-item nav-item active" data-page="profile">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>分析</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script>
+        // Initialize charts on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置Chart.js全局样式
+            Chart.defaults.font.family = "'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif";
+            Chart.defaults.font.size = 12;
+            Chart.defaults.color = '#8E8E93';
+            
+            // Spending Trend Chart
+            const spendingCtx = document.getElementById('spendingChart').getContext('2d');
+            const spendingChart = new Chart(spendingCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月'],
+                    datasets: [{
+                        label: '月度支出',
+                        data: [2100, 2450, 2760],
+                        backgroundColor: 'rgba(0, 122, 255, 0.2)',
+                        borderColor: '#007AFF',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '¥' + value;
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // Category Pie Chart
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            const categoryChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['食品', '家居用品', '电子产品', '儿童用品', '其他'],
+                    datasets: [{
+                        data: [43, 25, 16, 10, 6],
+                        backgroundColor: [
+                            '#2196F3', // Blue
+                            '#4CAF50', // Green
+                            '#FFC107', // Yellow
+                            '#F44336', // Red
+                            '#9C27B0'  // Purple
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+            
+            // Consumption Rate Chart
+            const consumptionCtx = document.getElementById('consumptionChart').getContext('2d');
+            const consumptionChart = new Chart(consumptionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['牛奶', '面包', '纸巾', '洗衣液', '电池'],
+                    datasets: [{
+                        label: '平均消耗天数',
+                        data: [5, 3, 14, 30, 45],
+                        backgroundColor: [
+                            'rgba(76, 217, 100, 0.7)',
+                            'rgba(76, 217, 100, 0.7)',
+                            'rgba(76, 217, 100, 0.7)',
+                            'rgba(76, 217, 100, 0.7)',
+                            'rgba(76, 217, 100, 0.7)'
+                        ],
+                        borderWidth: 0,
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '天数',
+                                color: '#8E8E93'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

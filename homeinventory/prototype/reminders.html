@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 提醒中心</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+</head>
+<body class="ios-modern">
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
+                <h1>提醒中心</h1>
+            </div>
+
+            <!-- Segmented Control -->
+            <div class="ios-card">
+                <div class="ios-card-content">
+                    <div class="ios-segment-control">
+                        <div class="ios-segment-item active">
+                            所有提醒
+                        </div>
+                        <div class="ios-segment-item">
+                            即将过期
+                        </div>
+                        <div class="ios-segment-item">
+                            保修期
+                        </div>
+                        <div class="ios-segment-item">
+                            定期更换
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today's Reminders -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">今天</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-red-light">
+                                <i class="fa-solid fa-exclamation-circle color-red"></i>
+                            </div>
+                            <div class="ios-menu-title">有机牛奶过期</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">处理</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">4瓶有机牛奶今天过期，建议尽快消耗或处理</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-10">
+                            <div class="ios-menu-icon bg-teal-light">
+                                <i class="fa-solid fa-shower color-teal"></i>
+                            </div>
+                            <div class="ios-menu-title">更换浴室滤水器</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">处理</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">浴室滤水器使用已满3个月，需要更换</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tomorrow's Reminders -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">明天</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-yellow-light">
+                                <i class="fa-solid fa-cheese color-yellow"></i>
+                            </div>
+                            <div class="ios-menu-title">奶酪过期</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">处理</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">一块奶酪将于明天过期</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- This Week's Reminders -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">本周</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-purple-light">
+                                <i class="fa-solid fa-pills color-purple"></i>
+                            </div>
+                            <div class="ios-menu-title">维生素补充剂过期</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">处理</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">将于3天后过期（4月2日）</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-10">
+                            <div class="ios-menu-icon bg-green-light">
+                                <i class="fa-solid fa-spray-can-sparkles color-green"></i>
+                            </div>
+                            <div class="ios-menu-title">空气清新剂不足</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">添加购物</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">客厅空气清新剂将于本周用完</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Reminders -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">即将到来</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-menu-list">
+                        <div class="ios-menu-item">
+                            <div class="ios-menu-icon bg-blue-light">
+                                <i class="fa-solid fa-tv color-blue"></i>
+                            </div>
+                            <div class="ios-menu-title">电视保修期到期</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">延长保修</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">将于2周后到期（4月15日）</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-caption">购于：2024年4月15日</div>
+                        </div>
+                        
+                        <div class="ios-menu-item mt-10">
+                            <div class="ios-menu-icon bg-purple-light">
+                                <i class="fa-solid fa-shirt color-purple"></i>
+                            </div>
+                            <div class="ios-menu-title">儿童季节性换装</div>
+                            <div class="ios-menu-detail">
+                                <button class="ios-button ios-button-small">计划购买</button>
+                            </div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-subtitle">夏季即将到来，需检查儿童夏装尺码</div>
+                        </div>
+                        <div class="ios-menu-item ios-menu-item-detail">
+                            <div class="ios-menu-icon"></div>
+                            <div class="ios-menu-caption">提醒日期：4月20日</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="home.html" class="ios-nav-item nav-item" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="items.html" class="ios-nav-item nav-item" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="shopping_list.html" class="ios-nav-item nav-item" data-page="shopping">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>购物</span>
+            </a>
+            <a href="reminders.html" class="ios-nav-item nav-item active" data-page="reminders">
+                <i class="fa-solid fa-bell"></i>
+                <span>提醒</span>
+            </a>
+            <a href="profile.html" class="ios-nav-item nav-item" data-page="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>

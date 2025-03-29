@@ -1,0 +1,584 @@
+/* iOS Modern Theme for Home Inventory App */
+
+/* Base Variables */
+:root {
+  --ios-primary: #007AFF;
+  --ios-secondary: #5AC8FA;
+  --ios-green: #34C759;
+  --ios-red: #FF3B30;
+  --ios-orange: #FF9500;
+  --ios-yellow: #FFCC00;
+  --ios-teal: #5AC8FA;
+  --ios-blue: #007AFF;
+  --ios-purple: #AF52DE;
+  --ios-pink: #FF2D55;
+
+  --ios-gray1: #8E8E93;
+  --ios-gray2: #AEAEB2;
+  --ios-gray3: #C7C7CC;
+  --ios-gray4: #D1D1D6;
+  --ios-gray5: #E5E5EA;
+  --ios-gray6: #F2F2F7;
+
+  --ios-text-primary: #000000;
+  --ios-text-secondary: #3C3C43;
+  --ios-text-tertiary: #3C3C4399;
+  --ios-text-quaternary: #3C3C4361;
+
+  --ios-bg-primary: #FFFFFF;
+  --ios-bg-secondary: #F2F2F7;
+  --ios-bg-tertiary: #FFFFFF;
+
+  --ios-separator: rgba(60, 60, 67, 0.36);
+
+  --ios-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ios-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ios-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --ios-radius-sm: 6px;
+  --ios-radius-md: 10px;
+  --ios-radius-lg: 16px;
+  --ios-radius-xl: 22px;
+  --ios-radius-full: 1000px;
+
+  /* App Theme Color - Can be customized */
+  --app-primary: var(--ios-green);
+  --app-secondary: var(--ios-blue);
+  --app-accent: var(--ios-orange);
+  --app-danger: var(--ios-red);
+  --app-warning: var(--ios-yellow);
+}
+
+/* iOS Modern Typography */
+body.ios-modern {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ios-text-primary);
+  background-color: var(--ios-bg-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 允许滚动但隐藏滚动条 */
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* 隐藏webkit浏览器的滚动条 */
+body.ios-modern::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS Frame - 使用基础框架样式 */
+.ios-frame {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* iOS Status Bar */
+.ios-status-bar {
+  height: 47px;
+  padding: 0px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--ios-bg-primary);
+  color: var(--ios-text-primary);
+  font-weight: 600;
+  font-size: 15px;
+  z-index: 100;
+}
+
+.ios-status-icons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+/* iOS Navigation Bar */
+.ios-nav-bar {
+  height: 83px;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 0.5px solid var(--ios-separator);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ios-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px 0;
+  min-width: 70px;
+  color: var(--ios-gray1);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.ios-nav-item i {
+  font-size: 26px;
+  margin-bottom: 2px;
+}
+
+.ios-nav-item.active {
+  color: var(--app-primary);
+}
+
+/* iOS Content Area - 应用内容区样式并隐藏滚动条 */
+.ios-content {
+  height: calc(100% - 130px);
+  background-color: var(--ios-bg-secondary);
+  padding-bottom: 30px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+/* 隐藏webkit浏览器的滚动条 */
+.ios-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS Header */
+.ios-header {
+  padding: 12px 16px 8px;
+  background-color: var(--ios-bg-primary);
+}
+
+.ios-header-large {
+  padding: 12px 16px;
+  background-color: var(--ios-bg-primary);
+}
+
+.ios-header-large h1 {
+  font-size: 34px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  color: var(--ios-text-primary);
+}
+
+.ios-header-large .ios-subheader {
+  font-size: 15px;
+  color: var(--ios-text-tertiary);
+  margin-top: 2px;
+}
+
+/* iOS Search Bar */
+.ios-searchbar {
+  margin: 8px 16px;
+  position: relative;
+}
+
+.ios-searchbar input {
+  width: 100%;
+  background-color: var(--ios-gray6);
+  border: none;
+  border-radius: var(--ios-radius-full);
+  padding: 8px 15px 8px 40px;
+  font-size: 17px;
+  color: var(--ios-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+}
+
+.ios-searchbar input::placeholder {
+  color: var(--ios-text-tertiary);
+}
+
+.ios-searchbar-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ios-text-tertiary);
+  font-size: 15px;
+}
+
+.ios-searchbar-camera {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ios-text-tertiary);
+  font-size: 15px;
+}
+
+/* iOS Cards */
+.ios-card {
+  background-color: var(--ios-bg-primary);
+  border-radius: var(--ios-radius-lg);
+  overflow: hidden;
+  margin: 16px;
+  box-shadow: var(--ios-shadow-sm);
+}
+
+.ios-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 4px;
+}
+
+.ios-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ios-text-primary);
+}
+
+.ios-card-subtitle {
+  font-size: 15px;
+  color: var(--ios-text-tertiary);
+  margin-top: -2px;
+}
+
+.ios-card-action {
+  color: var(--app-primary);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ios-card-content {
+  padding: 12px 16px 16px;
+}
+
+/* iOS Action Buttons Grid */
+.ios-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.ios-action-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ios-action-button-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--ios-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.ios-action-button-icon i {
+  font-size: 26px;
+}
+
+.ios-action-button-label {
+  font-size: 13px;
+  color: var(--ios-text-primary);
+  font-weight: 500;
+  max-width: 72px;
+}
+
+/* iOS Stats Grid */
+.ios-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.ios-stat-card {
+  background-color: var(--ios-bg-primary);
+  border-radius: var(--ios-radius-lg);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.ios-stat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.ios-stat-icon i {
+  font-size: 18px;
+}
+
+.ios-stat-content {
+  flex: 1;
+}
+
+.ios-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ios-text-primary);
+  line-height: 1.1;
+}
+
+.ios-stat-label {
+  font-size: 13px;
+  color: var(--ios-text-tertiary);
+  margin-top: 2px;
+}
+
+/* iOS List Items */
+.ios-list {
+  background-color: var(--ios-bg-primary);
+  border-radius: var(--ios-radius-lg);
+  overflow: hidden;
+}
+
+.ios-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 0.5px solid var(--ios-separator);
+}
+
+.ios-list-item:last-child {
+  border-bottom: none;
+}
+
+.ios-list-item-content {
+  flex: 1;
+}
+
+.ios-list-item-title {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ios-text-primary);
+}
+
+.ios-list-item-subtitle {
+  font-size: 13px;
+  color: var(--ios-text-tertiary);
+  margin-top: 2px;
+}
+
+.ios-list-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ios-list-item-icon i {
+  font-size: 16px;
+}
+
+.ios-list-item-action {
+  color: var(--ios-gray2);
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+/* Horizontal Scroll Container */
+.ios-horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 16px 12px;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.ios-horizontal-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS Item Cards in Horizontal Scroll */
+.ios-item-card {
+  min-width: 140px;
+  background-color: var(--ios-bg-primary);
+  border-radius: var(--ios-radius-lg);
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.ios-item-image {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ios-item-details {
+  padding: 10px 12px;
+}
+
+.ios-item-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ios-text-primary);
+  margin-bottom: 4px;
+}
+
+.ios-item-subtitle {
+  font-size: 13px;
+  color: var(--ios-text-tertiary);
+}
+
+.ios-item-meta {
+  font-size: 12px;
+  color: var(--ios-text-quaternary);
+  margin-top: 2px;
+}
+
+/* Category Grid */
+.ios-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.ios-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ios-category-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--ios-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.ios-category-icon i {
+  font-size: 26px;
+}
+
+.ios-category-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ios-text-primary);
+  text-align: center;
+}
+
+.ios-category-count {
+  font-size: 12px;
+  color: var(--ios-text-tertiary);
+  text-align: center;
+}
+
+/* Alert Cards */
+.ios-alert {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-radius: var(--ios-radius-lg);
+  background-color: var(--ios-bg-primary);
+  margin-bottom: 12px;
+}
+
+.ios-alert:last-child {
+  margin-bottom: 0;
+}
+
+.ios-alert-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.ios-alert-content {
+  flex: 1;
+}
+
+.ios-alert-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ios-text-primary);
+  margin-bottom: 2px;
+}
+
+.ios-alert-message {
+  font-size: 13px;
+  color: var(--ios-text-tertiary);
+}
+
+.ios-alert-action {
+  margin-left: 12px;
+}
+
+/* iOS-style Buttons */
+.ios-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: var(--ios-radius-md);
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.ios-button-primary {
+  background-color: var(--app-primary);
+  color: white;
+}
+
+.ios-button-secondary {
+  background-color: var(--ios-gray5);
+  color: var(--ios-text-primary);
+}
+
+.ios-button-outlined {
+  background-color: transparent;
+  border: 1px solid var(--app-primary);
+  color: var(--app-primary);
+}
+
+.ios-button-small {
+  font-size: 13px;
+  padding: 5px 12px;
+}
+
+.ios-button i {
+  margin-right: 6px;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--dynamic-island-width, 120px);
+  height: var(--dynamic-island-height, 35px);
+  background: var(--dynamic-island-color, #000);
+  border-radius: var(--dynamic-island-radius, 20px);
+  z-index: 1000;
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>家物管家 - 首页</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 只引入 iOS Modern Theme -->
+    <link rel="stylesheet" href="css/ios_modern.css">
+    <link rel="stylesheet" href="css/ios17_updates.css">
+</head>
+<body class="ios-modern">
+    <!-- 只保留一个 ios-frame 框架 -->
+    <div class="ios-frame">
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="status-bar ios-status-bar">
+            <div class="time">9:41</div>
+            <div class="icons ios-status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <!-- App Content -->
+        <div class="app-content ios-content">
+            <!-- Header with Large Title -->
+            <div class="ios-header-large">
+                <h1>家物管家</h1>
+                <div class="ios-subheader">欢迎回来，管理您的家庭物品</div>
+            </div>
+
+            <!-- Search Bar - 保持 search-bar 类来兼容 JS -->
+            <div class="ios-searchbar search-bar">
+                <i class="fa-solid fa-magnifying-glass ios-searchbar-icon"></i>
+                <input type="text" placeholder="搜索物品、位置或标签...">
+                <i class="fa-solid fa-camera ios-searchbar-camera"></i>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">快捷操作</div>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-actions-grid">
+                        <a href="#" class="ios-action-button">
+                            <div class="ios-action-button-icon bg-blue-light">
+                                <i class="fa-solid fa-plus color-blue"></i>
+                            </div>
+                            <div class="ios-action-button-label">添加物品</div>
+                        </a>
+                        <a href="#" class="ios-action-button">
+                            <div class="ios-action-button-icon bg-green-light">
+                                <i class="fa-solid fa-qrcode color-green"></i>
+                            </div>
+                            <div class="ios-action-button-label">扫描</div>
+                        </a>
+                        <a href="#" class="ios-action-button">
+                            <div class="ios-action-button-icon bg-orange-light">
+                                <i class="fa-solid fa-cart-shopping color-orange"></i>
+                            </div>
+                            <div class="ios-action-button-label">购物清单</div>
+                        </a>
+                        <a href="#" class="ios-action-button">
+                            <div class="ios-action-button-icon bg-purple-light">
+                                <i class="fa-solid fa-bell color-purple"></i>
+                            </div>
+                            <div class="ios-action-button-label">提醒</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">库存概览</div>
+                    <a href="#" class="ios-card-action">查看全部</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-stats-grid">
+                        <div class="ios-stat-card bg-blue-light">
+                            <div class="ios-stat-icon bg-blue-medium">
+                                <i class="fa-solid fa-boxes-stacked color-blue"></i>
+                            </div>
+                            <div class="ios-stat-content">
+                                <div class="ios-stat-value">128</div>
+                                <div class="ios-stat-label">总物品</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-stat-card bg-orange-light">
+                            <div class="ios-stat-icon bg-orange-medium">
+                                <i class="fa-solid fa-triangle-exclamation color-orange"></i>
+                            </div>
+                            <div class="ios-stat-content">
+                                <div class="ios-stat-value">8</div>
+                                <div class="ios-stat-label">库存预警</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-stat-card bg-red-light">
+                            <div class="ios-stat-icon bg-red-medium">
+                                <i class="fa-solid fa-clock color-red"></i>
+                            </div>
+                            <div class="ios-stat-content">
+                                <div class="ios-stat-value">5</div>
+                                <div class="ios-stat-label">即将过期</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-stat-card bg-green-light">
+                            <div class="ios-stat-icon bg-green-medium">
+                                <i class="fa-solid fa-cart-plus color-green"></i>
+                            </div>
+                            <div class="ios-stat-content">
+                                <div class="ios-stat-value">10</div>
+                                <div class="ios-stat-label">购物清单</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recently Added -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">最近添加</div>
+                    <a href="#" class="ios-card-action">查看更多</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-grid">
+                        <div class="ios-item-card-horizontal">
+                            <div class="ios-item-image" style="background-image: url('https://images.unsplash.com/photo-1585565804112-f201f68c48b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                            <div class="ios-item-details">
+                                <div class="ios-item-title">有机牛奶</div>
+                                <div class="ios-item-subtitle">厨房 - 冰箱</div>
+                                <div class="ios-item-meta">2天前添加</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-item-card-horizontal">
+                            <div class="ios-item-image" style="background-image: url('https://images.unsplash.com/photo-1600086427693-bec7b2c3341f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                            <div class="ios-item-details">
+                                <div class="ios-item-title">无线耳机</div>
+                                <div class="ios-item-subtitle">书房 - 书桌</div>
+                                <div class="ios-item-meta">今天添加</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-item-card-horizontal">
+                            <div class="ios-item-image" style="background-image: url('https://images.unsplash.com/photo-1584735175315-9d5df23be620?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                            <div class="ios-item-details">
+                                <div class="ios-item-title">儿童T恤</div>
+                                <div class="ios-item-subtitle">卧室 - 衣柜</div>
+                                <div class="ios-item-meta">3天前添加</div>
+                            </div>
+                        </div>
+                        
+                        <div class="ios-item-card-horizontal">
+                            <div class="ios-item-image" style="background-image: url('https://images.unsplash.com/photo-1604335398980-eeaa89654464?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80')"></div>
+                            <div class="ios-item-details">
+                                <div class="ios-item-title">洗衣液</div>
+                                <div class="ios-item-subtitle">卫生间 - 橱柜</div>
+                                <div class="ios-item-meta">1周前添加</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Categories -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">分类浏览</div>
+                    <a href="#" class="ios-card-action">编辑</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-categories-grid">
+                        <div class="ios-category">
+                            <div class="ios-category-icon bg-blue-light">
+                                <i class="fa-solid fa-utensils color-blue"></i>
+                            </div>
+                            <div class="ios-category-name">食品</div>
+                            <div class="ios-category-count">42件</div>
+                        </div>
+                        
+                        <div class="ios-category">
+                            <div class="ios-category-icon bg-green-light">
+                                <i class="fa-solid fa-shirt color-green"></i>
+                            </div>
+                            <div class="ios-category-name">服装</div>
+                            <div class="ios-category-count">31件</div>
+                        </div>
+                        
+                        <div class="ios-category">
+                            <div class="ios-category-icon bg-red-light">
+                                <i class="fa-solid fa-mobile-screen color-red"></i>
+                            </div>
+                            <div class="ios-category-name">电子产品</div>
+                            <div class="ios-category-count">18件</div>
+                        </div>
+                        
+                        <div class="ios-category">
+                            <div class="ios-category-icon bg-purple-light">
+                                <i class="fa-solid fa-baby color-purple"></i>
+                            </div>
+                            <div class="ios-category-name">儿童用品</div>
+                            <div class="ios-category-count">24件</div>
+                        </div>
+                        
+                        <div class="ios-category">
+                            <div class="ios-category-icon bg-orange-light">
+                                <i class="fa-solid fa-pump-soap color-orange"></i>
+                            </div>
+                            <div class="ios-category-name">家居用品</div>
+                            <div class="ios-category-count">29件</div>
+                        </div>
+                        
+                        <div class="ios-category">
+                            <div class="ios-category-icon bg-teal-light">
+                                <i class="fa-solid fa-prescription-bottle-medical color-teal"></i>
+                            </div>
+                            <div class="ios-category-name">药品</div>
+                            <div class="ios-category-count">12件</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expiry Alerts -->
+            <div class="ios-card">
+                <div class="ios-card-header">
+                    <div class="ios-card-title">到期提醒</div>
+                    <a href="#" class="ios-card-action">查看全部</a>
+                </div>
+                <div class="ios-card-content">
+                    <div class="ios-alert">
+                        <div class="ios-alert-icon">
+                            <i class="fa-solid fa-exclamation-circle color-red"></i>
+                        </div>
+                        <div class="ios-alert-content">
+                            <div class="ios-alert-title">有机牛奶即将过期</div>
+                            <div class="ios-alert-message">将在今天过期，建议尽快使用</div>
+                        </div>
+                        <div class="ios-alert-action">
+                            <button class="ios-button ios-button-small ios-button-outlined">处理</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-alert yellow mt-10">
+                        <div class="ios-alert-icon yellow">
+                            <i class="fa-solid fa-exclamation-circle color-yellow"></i>
+                        </div>
+                        <div class="ios-alert-content">
+                            <div class="ios-alert-title">希腊酸奶即将过期</div>
+                            <div class="ios-alert-message">将在2天后过期，建议尽快使用</div>
+                        </div>
+                        <div class="ios-alert-action">
+                            <button class="ios-button ios-button-small ios-button-outlined">处理</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar ios-nav-bar">
+            <a href="#" class="ios-nav-item nav-item active" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span>首页</span>
+            </a>
+            <a href="#" class="ios-nav-item nav-item" data-page="items">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <span>物品</span>
+            </a>
+            <a href="#" class="ios-nav-item nav-item" data-page="shopping">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>购物</span>
+            </a>
+            <a href="#" class="ios-nav-item nav-item" data-page="reminders">
+                <i class="fa-solid fa-bell"></i>
+                <span>提醒</span>
+            </a>
+            <a href="#" class="ios-nav-item nav-item" data-page="profile">
+                <i class="fa-solid fa-user"></i>
+                <span>我的</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家物管家 - Home Inventory App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 先引入共享框架样式 -->
+    <link rel="stylesheet" href="css/frame_styles.css">
+    <!-- 然后引入其他样式 -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/screen_styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>家物管家 - Home Inventory App</h1>
+        <p>高保真原型展示 - 管理家庭物品和购物清单的现代化移动应用</p>
+    </div>
+    
+    <div class="screens-grid">
+        <div class="screen-container">
+            <!-- 为有内置框架的页面添加 no-extra-frame 类 -->
+            <div class="preview-frame no-extra-frame">
+                <iframe src="home.html" title="Home Dashboard"></iframe>
+            </div>
+            <div class="screen-name">首页仪表盘</div>
+            <div class="screen-description">概览所有家庭物品和关键数据</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="items.html" title="Items List"></iframe>
+            </div>
+            <div class="screen-name">物品清单</div>
+            <div class="screen-description">查看和管理所有物品</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="item_detail.html" title="Item Detail"></iframe>
+            </div>
+            <div class="screen-name">物品详情</div>
+            <div class="screen-description">查看物品的详细信息</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="add_item.html" title="Add Item"></iframe>
+            </div>
+            <div class="screen-name">添加物品</div>
+            <div class="screen-description">添加新物品到库存</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="shopping_list.html" title="Shopping List"></iframe>
+            </div>
+            <div class="screen-name">购物清单</div>
+            <div class="screen-description">管理需要购买的物品</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="reminders.html" title="Reminders Center"></iframe>
+            </div>
+            <div class="screen-name">提醒中心</div>
+            <div class="screen-description">查看过期和保修提醒</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="analytics.html" title="Analytics Center"></iframe>
+            </div>
+            <div class="screen-name">数据分析</div>
+            <div class="screen-description">消费趋势和库存分析</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="family.html" title="Family Management"></iframe>
+            </div>
+            <div class="screen-name">家庭管理</div>
+            <div class="screen-description">管理家庭成员和权限</div>
+        </div>
+        
+        <div class="screen-container">
+            <div class="preview-frame no-extra-frame">
+                <iframe src="profile.html" title="User Profile"></iframe>
+            </div>
+            <div class="screen-name">用户中心</div>
+            <div class="screen-description">个人设置和偏好</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>家物管家 (Home Inventory) App Prototype © 2025</p>
+        <p>设计与开发: 家物管家团队</p>
+    </div>
+    
+    <script>
+        // Let all frames load first
+        window.addEventListener('load', function() {
+            // Then add click handlers
+            document.querySelectorAll('.preview-frame').forEach(frame => {
+                frame.addEventListener('click', function() {
+                    const iframe = this.querySelector('iframe');
+                    const url = iframe.src;
+                    window.open(url, '_blank');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
