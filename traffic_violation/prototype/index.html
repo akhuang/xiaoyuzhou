@@ -43,6 +43,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden; /* 防止滚动条 */
             width: 480px; /* 增加宽度，确保内容完全显示 */
+            height: 1080px; /* 增加高度，确保底部内容不被截断 */
         }
         
         .description {
@@ -75,12 +76,12 @@
     <div class="prototype-container">
         <div class="frame-container">
             <div class="frame-title">举报抓拍</div>
-            <iframe src="capture.html" height="956" scrolling="no"></iframe>
+            <iframe src="capture.html" scrolling="no"></iframe>
         </div>
         
         <div class="frame-container">
             <div class="frame-title">举报记录</div>
-            <iframe src="list.html" height="956" scrolling="no"></iframe>
+            <iframe src="list.html" scrolling="no"></iframe>
         </div>
     </div>
 </body>
