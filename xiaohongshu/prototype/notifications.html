@@ -266,7 +266,7 @@
                         <div class="notification-text">关注了你</div>
                     </div>
                     <div class="notification-action">
-                        <button class="btn-follow">关注</button>
+                        <button class="btn btn-outline btn-follow">关注</button>
                     </div>
                 </div>
                 
@@ -305,7 +305,7 @@
                         <div class="notification-text">关注了你</div>
                     </div>
                     <div class="notification-action">
-                        <button class="btn-followed">已关注</button>
+                        <button class="btn btn-primary">已关注</button>
                     </div>
                 </div>
                 
@@ -442,7 +442,7 @@
                         <div class="notification-text">关注了你</div>
                     </div>
                     <div class="notification-action">
-                        <button class="btn-follow">关注</button>
+                        <button class="btn btn-outline btn-follow">关注</button>
                     </div>
                 </div>
                 
@@ -458,7 +458,7 @@
                         <div class="notification-text">关注了你</div>
                     </div>
                     <div class="notification-action">
-                        <button class="btn-followed">已关注</button>
+                        <button class="btn btn-primary">已关注</button>
                     </div>
                 </div>
                 
@@ -474,7 +474,7 @@
                         <div class="notification-text">关注了你</div>
                     </div>
                     <div class="notification-action">
-                        <button class="btn-follow">关注</button>
+                        <button class="btn btn-outline btn-follow">关注</button>
                     </div>
                 </div>
             `;
@@ -547,6 +547,24 @@
                             break;
                     }
                 });
+            });
+            
+            // 添加关注按钮点击事件
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn-follow')) {
+                    // 切换关注状态
+                    if (e.target.classList.contains('btn-outline')) {
+                        // 从未关注到已关注
+                        e.target.classList.remove('btn-outline');
+                        e.target.classList.add('btn-primary');
+                        e.target.textContent = '已关注';
+                    } else {
+                        // 从已关注到未关注
+                        e.target.classList.add('btn-outline');
+                        e.target.classList.remove('btn-primary');
+                        e.target.textContent = '关注';
+                    }
+                }
             });
         });
     </script>
