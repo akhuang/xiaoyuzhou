@@ -46,6 +46,11 @@
             height: 1080px; /* 增加高度，确保底部内容不被截断 */
         }
         
+        .iframe-ipad {
+            width: 860px; /* iPad 宽度加上边框 */
+            height: 1230px; /* iPad 高度加上边框和一些额外空间 */
+        }
+        
         .description {
             max-width: 800px;
             margin: 0 auto 30px;
@@ -53,6 +58,54 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .device-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        
+        .device-option {
+            background-color: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .device-option.active {
+            border-color: #007AFF;
+            background-color: #f0f7ff;
+        }
+        
+        .device-option i {
+            font-size: 24px;
+            color: #666;
+        }
+        
+        .device-option.active i {
+            color: #007AFF;
+        }
+        
+        .device-group {
+            margin-bottom: 50px;
+        }
+        
+        .device-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
     </style>
 </head>
@@ -73,16 +126,80 @@
         <p><em>注意：这是原型效果展示，图片为占位图，实际使用时需通过相机拍摄实际违法行为。</em></p>
     </div>
     
-    <div class="prototype-container">
-        <div class="frame-container">
-            <div class="frame-title">举报抓拍</div>
-            <iframe src="capture.html" scrolling="no"></iframe>
+    <div class="device-selector">
+        <div class="device-option active" data-device="iphone">
+            <i class="fas fa-mobile-alt"></i>
+            <span>iPhone 版本</span>
         </div>
-        
-        <div class="frame-container">
-            <div class="frame-title">举报记录</div>
-            <iframe src="list.html" scrolling="no"></iframe>
+        <div class="device-option" data-device="ipad">
+            <i class="fas fa-tablet-alt"></i>
+            <span>iPad 版本</span>
         </div>
     </div>
+    
+    <!-- iPhone 版本 -->
+    <div class="device-group" id="iphone-group">
+        <div class="device-title">
+            <i class="fas fa-mobile-alt"></i>
+            <span>iPhone 版本</span>
+        </div>
+        <div class="prototype-container">
+            <div class="frame-container">
+                <div class="frame-title">举报抓拍</div>
+                <iframe src="capture.html" scrolling="no"></iframe>
+            </div>
+            
+            <div class="frame-container">
+                <div class="frame-title">举报记录</div>
+                <iframe src="list.html" scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- iPad 版本 -->
+    <div class="device-group" id="ipad-group" style="display: none;">
+        <div class="device-title">
+            <i class="fas fa-tablet-alt"></i>
+            <span>iPad 版本</span>
+        </div>
+        <div class="prototype-container">
+            <div class="frame-container">
+                <div class="frame-title">举报抓拍 (iPad)</div>
+                <iframe src="capture_ipad.html" scrolling="no" class="iframe-ipad"></iframe>
+            </div>
+            
+            <div class="frame-container">
+                <div class="frame-title">举报记录 (iPad)</div>
+                <iframe src="list_ipad.html" scrolling="no" class="iframe-ipad"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 设备切换功能
+        document.addEventListener('DOMContentLoaded', () => {
+            const deviceOptions = document.querySelectorAll('.device-option');
+            const iphoneGroup = document.getElementById('iphone-group');
+            const ipadGroup = document.getElementById('ipad-group');
+            
+            deviceOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // 移除所有active类
+                    deviceOptions.forEach(opt => opt.classList.remove('active'));
+                    // 给当前点击的选项添加active类
+                    option.classList.add('active');
+                    
+                    const device = option.getAttribute('data-device');
+                    if (device === 'iphone') {
+                        iphoneGroup.style.display = 'block';
+                        ipadGroup.style.display = 'none';
+                    } else {
+                        iphoneGroup.style.display = 'none';
+                        ipadGroup.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

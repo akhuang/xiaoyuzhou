@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息通知 - 小红书</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .notification-tabs {
+            display: flex;
+            background-color: var(--background-light);
+            border-bottom: 1px solid var(--divider-color);
+            padding: var(--spacing-md) var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .notification-tab {
+            flex: 1;
+            text-align: center;
+            padding: var(--spacing-sm) 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .notification-tab.active {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .notification-tab.active:after {
+            content: "";
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 2px;
+            background-color: var(--primary-color);
+            border-radius: 1px;
+        }
+
+        .notification-item {
+            display: flex;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--divider-color);
+            align-items: center;
+        }
+
+        .notification-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: var(--spacing-md);
+            flex-shrink: 0;
+        }
+
+        .notification-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+
+        .notification-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .notification-time {
+            color: var(--text-tertiary);
+            font-size: 12px;
+        }
+
+        .notification-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .notification-post {
+            display: flex;
+            align-items: center;
+            background-color: var(--background-off-white);
+            padding: var(--spacing-xs);
+            border-radius: var(--border-radius-sm);
+            max-width: 85%;
+        }
+
+        .notification-post-image {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            margin-right: var(--spacing-xs);
+            flex-shrink: 0;
+        }
+
+        .notification-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .notification-post-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .notification-action {
+            display: flex;
+            align-items: center;
+            margin-left: var(--spacing-md);
+        }
+
+        .notification-badge {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: var(--spacing-xs);
+        }
+
+        .notification-message {
+            background-color: var(--background-off-white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: 13px;
+            color: var(--text-primary);
+            max-width: 85%;
+        }
+
+        /* 使用通用按钮样式，保持与首页一致性 */
+    </style>
+</head>
+<body>
+    <div class="iphone-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-bar-left">
+                <div class="status-bar-time">9:41</div>
+            </div>
+            <div class="status-bar-right">
+                <div class="status-bar-signal">
+                    <i class="fas fa-signal"></i>
+                </div>
+                <div class="status-bar-wifi">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="status-bar-battery">
+                    <i class="fas fa-battery-full"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-left">
+                
+            </div>
+            <div class="nav-title">消息通知</div>
+            <div class="nav-right">
+                <div class="btn btn-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notification Tabs -->
+        <div class="notification-tabs">
+            <div class="notification-tab active">互动</div>
+            <div class="notification-tab">私信</div>
+            <div class="notification-tab">粉丝</div>
+            <div class="notification-tab">公告</div>
+        </div>
+        
+        <!-- App Content -->
+        <div class="app-content">
+            <!-- Notification List -->
+            <div class="notification-list p-md">
+                <!-- Notification Item - Like -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=6" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">小红薯123 <span class="notification-badge"></span></div>
+                            <div class="notification-time">2分钟前</div>
+                        </div>
+                        <div class="notification-text">赞了你的笔记</div>
+                        <div class="notification-post">
+                            <div class="notification-post-image">
+                                <img src="https://source.unsplash.com/random/200x200/?food=1" alt="Post">
+                            </div>
+                            <div class="notification-post-text">
+                                自制超简单网红奶茶，在家就能做！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notification Item - Comment -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=7" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">美妆达人</div>
+                            <div class="notification-time">15分钟前</div>
+                        </div>
+                        <div class="notification-text">评论了你的笔记</div>
+                        <div class="notification-post">
+                            <div class="notification-post-image">
+                                <img src="https://source.unsplash.com/random/200x200/?cosmetics=1" alt="Post">
+                            </div>
+                            <div class="notification-post-text">
+                                实测这个口红真的很显白！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=7" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">美妆达人</div>
+                            <div class="notification-time">15分钟前</div>
+                        </div>
+                        <div class="notification-text">说：这个技巧太实用了，我一定要试试！谢谢分享~</div>
+                    </div>
+                </div>
+                
+                <!-- Notification Item - Follow -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=8" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">旅行者小明 <span class="notification-badge"></span></div>
+                            <div class="notification-time">1小时前</div>
+                        </div>
+                        <div class="notification-text">关注了你</div>
+                    </div>
+                    <div class="notification-action">
+                        <button class="btn-follow">关注</button>
+                    </div>
+                </div>
+                
+                <!-- Notification Item - Mention -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=9" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">健身教练</div>
+                            <div class="notification-time">3小时前</div>
+                        </div>
+                        <div class="notification-text">在评论中提到了你</div>
+                        <div class="notification-post">
+                            <div class="notification-post-image">
+                                <img src="https://source.unsplash.com/random/200x200/?fitness=1" alt="Post">
+                            </div>
+                            <div class="notification-post-text">
+                                @你 这个健身动作一定要试试，超有效！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notification Item - Follow -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=10" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">美食博主</div>
+                            <div class="notification-time">5小时前</div>
+                        </div>
+                        <div class="notification-text">关注了你</div>
+                    </div>
+                    <div class="notification-action">
+                        <button class="btn-followed">已关注</button>
+                    </div>
+                </div>
+                
+                <!-- Notification Item - Saved -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=11" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">家居达人</div>
+                            <div class="notification-time">1天前</div>
+                        </div>
+                        <div class="notification-text">收藏了你的笔记</div>
+                        <div class="notification-post">
+                            <div class="notification-post-image">
+                                <img src="https://source.unsplash.com/random/200x200/?home=1" alt="Post">
+                            </div>
+                            <div class="notification-post-text">
+                                10个超实用的家居收纳技巧
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- System Notification -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://via.placeholder.com/200/FF2442/FFFFFF?text=XHS" alt="System">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">小红书通知</div>
+                            <div class="notification-time">2天前</div>
+                        </div>
+                        <div class="notification-text">恭喜你！你的笔记已经获得了超过1000个赞！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Tab Bar -->
+        <div class="tab-bar">
+            <div class="tab-item" data-page="home.html">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </div>
+            <div class="tab-item" data-page="explore.html">
+                <i class="fas fa-compass"></i>
+                <span>发现</span>
+            </div>
+            <div class="tab-item" data-page="create_post.html">
+                <i class="fas fa-plus-circle"></i>
+                <span>发布</span>
+            </div>
+            <div class="tab-item active" data-page="notifications.html">
+                <i class="fas fa-bell"></i>
+                <span>消息</span>
+            </div>
+            <div class="tab-item" data-page="profile.html">
+                <i class="fas fa-user"></i>
+                <span>我</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/navigation.js"></script>
+    <script>
+        // 标签切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.notification-tab');
+            const interactionsContent = document.querySelector('.notification-list');
+            
+            // 创建私信内容区域，但默认隐藏
+            const messagesContent = document.createElement('div');
+            messagesContent.className = 'direct-messages p-md';
+            messagesContent.style.display = 'none';
+            messagesContent.innerHTML = `
+                <!-- Direct Message Item -->
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=20" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">美妆达人 <span class="notification-badge"></span></div>
+                            <div class="notification-time">30分钟前</div>
+                        </div>
+                        <div class="notification-message">你好，想请教一下那款口红是什么色号呀？</div>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=21" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">旅行者小明</div>
+                            <div class="notification-time">昨天</div>
+                        </div>
+                        <div class="notification-message">在看到你分享的那个景点后我也去了，真的很棒！</div>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=22" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">咖啡爱好者</div>
+                            <div class="notification-time">2天前</div>
+                        </div>
+                        <div class="notification-message">你推荐的那家咖啡店我去了，果然很有特色！下次有什么好地方可以再推荐一下吗？</div>
+                    </div>
+                </div>
+            `;
+            
+            // 创建粉丝内容区域
+            const followersContent = document.createElement('div');
+            followersContent.className = 'followers-content p-md';
+            followersContent.style.display = 'none';
+            followersContent.innerHTML = `
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=30" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">时尚达人</div>
+                            <div class="notification-time">1小时前</div>
+                        </div>
+                        <div class="notification-text">关注了你</div>
+                    </div>
+                    <div class="notification-action">
+                        <button class="btn-follow">关注</button>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=31" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">摄影师小王</div>
+                            <div class="notification-time">3小时前</div>
+                        </div>
+                        <div class="notification-text">关注了你</div>
+                    </div>
+                    <div class="notification-action">
+                        <button class="btn-followed">已关注</button>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://source.unsplash.com/random/200x200/?person=32" alt="User">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">美食家</div>
+                            <div class="notification-time">昨天</div>
+                        </div>
+                        <div class="notification-text">关注了你</div>
+                    </div>
+                    <div class="notification-action">
+                        <button class="btn-follow">关注</button>
+                    </div>
+                </div>
+            `;
+            
+            // 创建公告内容区域
+            const announcementsContent = document.createElement('div');
+            announcementsContent.className = 'announcements-content p-md';
+            announcementsContent.style.display = 'none';
+            announcementsContent.innerHTML = `
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://via.placeholder.com/200/FF2442/FFFFFF?text=XHS" alt="System">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">小红书官方</div>
+                            <div class="notification-time">今天</div>
+                        </div>
+                        <div class="notification-text">感谢你一直以来对小红书的支持！新版本已上线，快来体验更多新功能吧！</div>
+                    </div>
+                </div>
+                
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://via.placeholder.com/200/FF2442/FFFFFF?text=XHS" alt="System">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-name">小红书官方</div>
+                            <div class="notification-time">3天前</div>
+                        </div>
+                        <div class="notification-text">恭喜你！你的账号已达到创作者计划要求，现在可以申请加入创作者计划啦！</div>
+                    </div>
+                </div>
+            `;
+            
+            // 将内容添加到app-content
+            const appContent = document.querySelector('.app-content');
+            appContent.appendChild(messagesContent);
+            appContent.appendChild(followersContent);
+            appContent.appendChild(announcementsContent);
+            
+            // 添加标签点击事件
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', function() {
+                    // 移除所有标签的active类
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // 将当前点击的标签添加active类
+                    this.classList.add('active');
+                    
+                    // 隐藏所有内容
+                    interactionsContent.style.display = 'none';
+                    messagesContent.style.display = 'none';
+                    followersContent.style.display = 'none';
+                    announcementsContent.style.display = 'none';
+                    
+                    // 显示对应的内容
+                    switch(index) {
+                        case 0: // 互动
+                            interactionsContent.style.display = 'block';
+                            break;
+                        case 1: // 私信
+                            messagesContent.style.display = 'block';
+                            break;
+                        case 2: // 粉丝
+                            followersContent.style.display = 'block';
+                            break;
+                        case 3: // 公告
+                            announcementsContent.style.display = 'block';
+                            break;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

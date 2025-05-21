@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发现 - 小红书</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="iphone-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-bar-left">
+                <div class="status-bar-time">9:41</div>
+            </div>
+            <div class="status-bar-right">
+                <div class="status-bar-signal">
+                    <i class="fas fa-signal"></i>
+                </div>
+                <div class="status-bar-wifi">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="status-bar-battery">
+                    <i class="fas fa-battery-full"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-title">发现</div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" class="search-input" placeholder="搜索你感兴趣的内容">
+        </div>
+        
+        <!-- Category Bar -->
+        <div class="category-bar">
+            <div class="category-item active">推荐</div>
+            <div class="category-item">热门</div>
+            <div class="category-item">旅行</div>
+            <div class="category-item">美食</div>
+            <div class="category-item">时尚</div>
+            <div class="category-item">彩妆</div>
+            <div class="category-item">护肤</div>
+            <div class="category-item">家居</div>
+            <div class="category-item">运动</div>
+            <div class="category-item">数码</div>
+        </div>
+        
+        <!-- App Content -->
+        <div class="app-content">
+            <!-- Trending Topics -->
+            <div class="trending-section p-md">
+                <h3 class="section-title mb-md">热门话题</h3>
+                <div class="trending-topics">
+                    <div class="card p-md mb-md flex items-center">
+                        <img src="https://source.unsplash.com/random/100x100/?travel" alt="Travel" class="rounded-md" style="width: 60px; height: 60px; object-fit: cover; margin-right: var(--spacing-md);">
+                        <div class="flex-1">
+                            <h4 class="mb-sm">#国庆去哪玩</h4>
+                            <p class="text-sm text-secondary">23.4k人正在讨论</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-tertiary"></i>
+                    </div>
+                    <div class="card p-md mb-md flex items-center">
+                        <img src="https://source.unsplash.com/random/100x100/?food" alt="Food" class="rounded-md" style="width: 60px; height: 60px; object-fit: cover; margin-right: var(--spacing-md);">
+                        <div class="flex-1">
+                            <h4 class="mb-sm">#今日美食打卡</h4>
+                            <p class="text-sm text-secondary">18.7k人正在讨论</p>
+                        </div>
+                        <i class="fas fa-chevron-right text-tertiary"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Explore Grid -->
+            <div class="grid-layout">
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?fashion=1" alt="Fashion">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?cafe=1" alt="Cafe">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?food=1" alt="Food">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?travel=1" alt="Travel">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?makeup=1" alt="Makeup">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?dessert=1" alt="Dessert">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?interior=1" alt="Interior">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?fitness=1" alt="Fitness">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?tech=1" alt="Tech">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?pets=1" alt="Pets">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?art=1" alt="Art">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?plants=1" alt="Plants">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?outfit=1" alt="Outfit">
+                </div>
+                <div class="grid-item">
+                    <img src="https://source.unsplash.com/random/300x300/?restaurant=1" alt="Restaurant">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Tab Bar -->
+        <div class="tab-bar">
+            <div class="tab-item" data-page="home.html">
+                <i class="far fa-home"></i>
+                <span>首页</span>
+            </div>
+            <div class="tab-item active" data-page="explore.html">
+                <i class="fas fa-compass"></i>
+                <span>发现</span>
+            </div>
+            <div class="tab-item" data-page="create_post.html">
+                <i class="fas fa-plus-circle"></i>
+                <span>发布</span>
+            </div>
+            <div class="tab-item" data-page="notifications.html">
+                <i class="far fa-bell"></i>
+                <span>消息</span>
+            </div>
+            <div class="tab-item" data-page="profile.html">
+                <i class="far fa-user"></i>
+                <span>我</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/navigation.js"></script>
+</body>
+</html>

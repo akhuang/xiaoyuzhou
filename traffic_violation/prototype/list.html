@@ -13,6 +13,35 @@
             padding: 0;
         }
         
+        /* 占位图片样式 */
+        .placeholder-bg {
+            background: url('img/placeholder.jpg') center center no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .placeholder-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .placeholder-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            text-align: center;
+        }
+        
         /* 违法记录列表项样式修改 */
         .violation-item {
             background-color: white;
@@ -151,6 +180,105 @@
             color: #666;
             margin-top: 5px;
         }
+
+        /* 随手拍微博导出按钮样式 */
+        .detail-action.weibo-export {
+            background-color: #FF9900;
+            color: white;
+        }
+
+        /* 随手拍微博弹窗样式 */
+        .weibo-export-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+        
+        .weibo-modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .weibo-modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .weibo-modal-body {
+            padding: 15px;
+        }
+        
+        .weibo-note {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-left: 3px solid #FF9900;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .weibo-note i {
+            color: #FF9900;
+        }
+        
+        .weibo-content {
+            width: 100%;
+            height: 120px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .weibo-share-btn {
+            background-color: #FF9900;
+            color: white;
+        }
+        
+        .weibo-modal-footer {
+            display: flex;
+            border-top: 1px solid #e0e0e0;
+            padding: 15px;
+            gap: 10px;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .modal-btn.secondary {
+            background-color: #f0f0f0;
+            color: #666;
+        }
+        
+        .modal-btn.primary {
+            background-color: #007AFF;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -220,10 +348,18 @@
                     <div class="violation-item" onclick="showDetail(1)">
                         <div class="violation-images">
                             <div class="violation-image image-car">
-                                <div><i class="fas fa-car fa-2x"></i><br>违法行为照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-car fa-2x"></i><br>违法行为照片
+                                    </div>
+                                </div>
                             </div>
                             <div class="violation-image image-plate">
-                                <div><i class="fas fa-id-card fa-2x"></i><br>车牌照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-id-card fa-2x"></i><br>车牌照片
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="violation-details">
@@ -246,10 +382,18 @@
                     <div class="violation-item" onclick="showDetail(2)">
                         <div class="violation-images">
                             <div class="violation-image image-car">
-                                <div><i class="fas fa-car fa-2x"></i><br>违法行为照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-car fa-2x"></i><br>违法行为照片
+                                    </div>
+                                </div>
                             </div>
                             <div class="violation-image image-plate">
-                                <div><i class="fas fa-id-card fa-2x"></i><br>车牌照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-id-card fa-2x"></i><br>车牌照片
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="violation-details">
@@ -272,10 +416,18 @@
                     <div class="violation-item" onclick="showDetail(3)">
                         <div class="violation-images">
                             <div class="violation-image image-car">
-                                <div><i class="fas fa-car fa-2x"></i><br>违法行为照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-car fa-2x"></i><br>违法行为照片
+                                    </div>
+                                </div>
                             </div>
                             <div class="violation-image image-plate">
-                                <div><i class="fas fa-id-card fa-2x"></i><br>车牌照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-id-card fa-2x"></i><br>车牌照片
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="violation-details">
@@ -298,10 +450,18 @@
                     <div class="violation-item" onclick="showDetail(4)">
                         <div class="violation-images">
                             <div class="violation-image image-car">
-                                <div><i class="fas fa-car fa-2x"></i><br>违法行为照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-car fa-2x"></i><br>违法行为照片
+                                    </div>
+                                </div>
                             </div>
                             <div class="violation-image image-plate">
-                                <div><i class="fas fa-id-card fa-2x"></i><br>车牌照片</div>
+                                <div class="placeholder-bg">
+                                    <div class="placeholder-content">
+                                        <i class="fas fa-id-card fa-2x"></i><br>车牌照片
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="violation-details">
@@ -340,25 +500,115 @@
         </div>
     </div>
     
-    <!-- 详情弹出框 -->
+    <!-- 详情模态框 -->
     <div class="detail-modal" id="detail-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 style="margin: 0;">举报详情</h3>
-                <i class="fas fa-times" onclick="hideDetail()"></i>
+                <h3 id="modal-violation-type">闯红灯</h3>
+                <i class="fas fa-times" id="close-modal"></i>
             </div>
             <div class="modal-body">
-                <p><strong>车牌号码:</strong> 京A12345</p>
-                <p><strong>违法类型:</strong> <span id="detail-type">闯红灯</span></p>
-                <p><strong>违法地点:</strong> <span id="detail-location">北京市朝阳区建国路89号</span></p>
-                <p><strong>举报时间:</strong> <span id="detail-time">2025-03-29 09:15</span></p>
-                <p><strong>处理状态:</strong> <span class="text-success">已受理</span></p>
-                <p><strong>处理详情:</strong> 交管部门已记录该违法行为，将对违法车辆进行处罚。</p>
-                <p><strong>贡献值:</strong> +15分</p>
+                <div class="detail-images">
+                    <div class="detail-image detail-car">
+                        <div class="placeholder-bg">
+                            <div class="placeholder-content">
+                                <i class="fas fa-car fa-2x"></i><br>违法行为照片
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-image detail-plate">
+                        <div class="placeholder-bg">
+                            <div class="placeholder-content">
+                                <i class="fas fa-id-card fa-2x"></i><br>车牌照片
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-info">
+                    <div class="detail-item" id="modal-plate">
+                        <div class="detail-label">车牌号</div>
+                        <div class="detail-value">京A12345</div>
+                    </div>
+                    <div class="detail-item" id="modal-time">
+                        <div class="detail-label">违法时间</div>
+                        <div class="detail-value">2025-03-29 09:15</div>
+                    </div>
+                    <div class="detail-item" id="modal-location">
+                        <div class="detail-label">违法地点</div>
+                        <div class="detail-value">北京市朝阳区建国路89号</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">举报时间</div>
+                        <div class="detail-value">2025-03-29 09:18</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">处理状态</div>
+                        <div class="detail-value" id="modal-status">
+                            <span class="status-indicator processed">已受理</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-timeline">
+                    <h4 class="detail-section-title">处理进度</h4>
+                    <div class="timeline">
+                        <div class="timeline-item completed">
+                            <div class="timeline-date">2025-03-29 09:18</div>
+                            <div class="timeline-content">已成功提交举报信息</div>
+                        </div>
+                        <div class="timeline-item completed">
+                            <div class="timeline-date">2025-03-29 10:30</div>
+                            <div class="timeline-content">交管部门已收到举报</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">预计 2025-04-05</div>
+                            <div class="timeline-content">核实违法情况处理中</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 添加随手拍微博导出按钮 -->
+                <div class="detail-actions">
+                    <button class="detail-action secondary">
+                        <i class="fas fa-print"></i> 导出
+                    </button>
+                    <button class="detail-action weibo-export" onclick="exportToWeibo()">
+                        <i class="fab fa-weibo"></i> 导出到随手拍微博
+                    </button>
+                    <button class="detail-action">
+                        <i class="fas fa-share-alt"></i> 分享
+                    </button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button class="modal-btn secondary" onclick="hideDetail()">关闭</button>
-                <button class="modal-btn primary" id="share-btn">分享</button>
+        </div>
+    </div>
+    
+    <!-- 随手拍微博导出弹窗 -->
+    <div class="weibo-export-modal" id="weibo-export-modal">
+        <div class="weibo-modal-content">
+            <div class="weibo-modal-header">
+                <h3 style="margin: 0;">导出到随手拍微博</h3>
+                <i class="fas fa-times" id="close-weibo-modal"></i>
+            </div>
+            <div class="weibo-modal-body">
+                <div class="weibo-note">
+                    <i class="fas fa-info-circle"></i> 由于系统无法直接同步信息到交警系统，您可以复制以下内容到微博随手拍进行举报。
+                </div>
+                <textarea class="weibo-content" id="weibo-content" readonly></textarea>
+                <div style="margin-bottom: 10px;">
+                    <button class="modal-btn primary weibo-share-btn" style="width: 100%; margin-bottom: 10px;">
+                        <i class="fas fa-copy"></i> 复制内容并打开微博
+                    </button>
+                </div>
+                <p style="font-size: 14px; color: #666;">
+                    <b>使用步骤：</b>
+                    <ol style="padding-left: 20px; margin-top: 5px;">
+                        <li>复制上方文本内容</li>
+                        <li>打开微博App</li>
+                        <li>进入"随手拍"频道</li>
+                        <li>粘贴内容并上传相关照片</li>
+                        <li>添加 #随手拍违章# 标签发布</li>
+                    </ol>
+                </p>
             </div>
         </div>
     </div>
@@ -399,31 +649,121 @@
                 option.classList.add('active');
             });
         });
+        
+        // 关闭详情模态框
+        document.getElementById('close-modal').addEventListener('click', hideDetail);
+        
+        // 关闭微博导出弹窗
+        document.getElementById('close-weibo-modal').addEventListener('click', hideWeiboModal);
+        document.getElementById('cancel-weibo-export').addEventListener('click', hideWeiboModal);
     });
+    
+    // 当前选中的违章信息
+    let currentViolation = {
+        type: '闯红灯',
+        plate: '京A12345',
+        location: '北京市朝阳区建国路89号',
+        time: '2025-03-29 09:15'
+    };
     
     // 显示详情
     function showDetail(id) {
         document.getElementById('detail-modal').style.display = 'flex';
         
         // 根据ID更新详情内容
-        if (id === 2) {
-            document.getElementById('detail-type').textContent = '压实线变道';
-            document.getElementById('detail-location').textContent = '北京市海淀区中关村大街15号';
-            document.getElementById('detail-time').textContent = '2025-03-27 14:30';
+        if (id === 1) {
+            currentViolation = {
+                type: '闯红灯',
+                plate: '京A12345',
+                location: '北京市朝阳区建国路89号',
+                time: '2025-03-29 09:15'
+            };
+            document.getElementById('modal-violation-type').textContent = '闯红灯';
+            document.getElementById('modal-location').querySelector('.detail-value').textContent = '北京市朝阳区建国路89号';
+            document.getElementById('modal-time').querySelector('.detail-value').textContent = '2025-03-29 09:15';
+            document.getElementById('modal-plate').querySelector('.detail-value').textContent = '京A12345';
+            document.getElementById('modal-status').innerHTML = '<span class="status-indicator processed">已受理</span>';
+        } else if (id === 2) {
+            currentViolation = {
+                type: '压实线变道',
+                plate: '京B67890',
+                location: '北京市海淀区中关村大街15号',
+                time: '2025-03-27 14:30'
+            };
+            document.getElementById('modal-violation-type').textContent = '压实线变道';
+            document.getElementById('modal-location').querySelector('.detail-value').textContent = '北京市海淀区中关村大街15号';
+            document.getElementById('modal-time').querySelector('.detail-value').textContent = '2025-03-27 14:30';
+            document.getElementById('modal-plate').querySelector('.detail-value').textContent = '京B67890';
+            document.getElementById('modal-status').innerHTML = '<span class="status-indicator pending">处理中</span>';
         } else if (id === 3) {
-            document.getElementById('detail-type').textContent = '逆向行驶';
-            document.getElementById('detail-location').textContent = '北京市西城区西长安街1号';
-            document.getElementById('detail-time').textContent = '2025-03-25 10:45';
+            currentViolation = {
+                type: '逆向行驶',
+                plate: '京C54321',
+                location: '北京市西城区西长安街1号',
+                time: '2025-03-25 10:45'
+            };
+            document.getElementById('modal-violation-type').textContent = '逆向行驶';
+            document.getElementById('modal-location').querySelector('.detail-value').textContent = '北京市西城区西长安街1号';
+            document.getElementById('modal-time').querySelector('.detail-value').textContent = '2025-03-25 10:45';
+            document.getElementById('modal-plate').querySelector('.detail-value').textContent = '京C54321';
+            document.getElementById('modal-status').innerHTML = '<span class="status-indicator">已提交</span>';
         } else if (id === 4) {
-            document.getElementById('detail-type').textContent = '占用应急车道';
-            document.getElementById('detail-location').textContent = '北京市东城区东四环';
-            document.getElementById('detail-time').textContent = '2025-03-20 08:30';
+            currentViolation = {
+                type: '占用应急车道',
+                plate: '京D98765',
+                location: '北京市东城区东四环',
+                time: '2025-03-20 08:30'
+            };
+            document.getElementById('modal-violation-type').textContent = '占用应急车道';
+            document.getElementById('modal-location').querySelector('.detail-value').textContent = '北京市东城区东四环';
+            document.getElementById('modal-time').querySelector('.detail-value').textContent = '2025-03-20 08:30';
+            document.getElementById('modal-plate').querySelector('.detail-value').textContent = '京D98765';
+            document.getElementById('modal-status').innerHTML = '<span class="status-indicator processed">已完成</span>';
         }
     }
     
     // 隐藏详情
     function hideDetail() {
         document.getElementById('detail-modal').style.display = 'none';
+    }
+    
+    // 显示微博导出弹窗
+    function exportToWeibo() {
+        const weiboContent = document.querySelector('.weibo-content');
+        let exportText = `#随手拍违章# 我在${currentViolation.time}，于${currentViolation.location}，发现一辆${currentViolation.plate}的车辆存在${currentViolation.type}违法行为。请相关部门处理，谢谢！`;
+        weiboContent.value = exportText;
+        
+        document.getElementById('weibo-export-modal').style.display = 'flex';
+    }
+    
+    // 分享到微博
+    document.querySelector('.weibo-share-btn').addEventListener('click', () => {
+        const content = document.querySelector('.weibo-content').value;
+        // 实际项目中，这里会调用微博分享API
+        copyToClipboard(content);
+        alert('内容已复制，请粘贴到微博随手拍');
+        
+        // 尝试打开微博App
+        setTimeout(() => {
+            window.location.href = 'sinaweibo://home';
+        }, 500);
+        
+        hideWeiboModal();
+    });
+    
+    // 复制到剪贴板
+    function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+    
+    // 隐藏微博导出弹窗
+    function hideWeiboModal() {
+        document.getElementById('weibo-export-modal').style.display = 'none';
     }
     </script>
 </body>

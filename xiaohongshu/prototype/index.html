@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书原型演示</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            padding: 40px;
+            background-color: #f5f5f5;
+            font-family: var(--font-primary);
+        }
+        
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+        
+        .title h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .title p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>小红书 App 原型</h1>
+        <p>这是一个小红书 App 的高保真原型，包含了主要的用户界面和交互。以下是各个界面的预览。</p>
+    </div>
+    
+    <div class="prototype-grid">
+        <div class="prototype-item">
+            <iframe src="home.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">首页 Feed</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="explore.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">发现页</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="create_post.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">创建笔记</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="notifications.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">消息通知</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="profile.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">个人主页</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="post_detail.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">笔记详情</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="search_results.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">搜索结果</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="product_detail.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">商品详情</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="comments.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">评论页</div>
+        </div>
+        <div class="prototype-item">
+            <iframe src="followers.html" class="prototype-frame"></iframe>
+            <div class="prototype-label">关注/粉丝页</div>
+        </div>
+    </div>
+
+    <script>
+        // Resize iframes when window resizes
+        window.addEventListener('resize', function() {
+            const frames = document.querySelectorAll('.prototype-frame');
+            frames.forEach(frame => {
+                frame.style.height = '600px'; // Reset height to ensure proper aspect ratio
+            });
+        });
+    </script>
+</body>
+</html>

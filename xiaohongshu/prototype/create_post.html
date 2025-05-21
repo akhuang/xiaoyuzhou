@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建笔记 - 小红书</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .create-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--divider-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .create-tab {
+            flex: 1;
+            text-align: center;
+            padding: var(--spacing-md);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .create-tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .photo-item {
+            aspect-ratio: 1;
+            background-color: var(--background-off-white);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-item.add-photo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed var(--divider-color);
+            font-size: 24px;
+            color: var(--text-tertiary);
+        }
+        
+        .editor-section {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .editor-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            padding: var(--spacing-md) 0;
+            resize: none;
+            height: 100px;
+        }
+        
+        .editor-input::placeholder {
+            color: var(--text-tertiary);
+        }
+        
+        .tag-input {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid var(--divider-color);
+        }
+        
+        .tag-input i {
+            color: var(--text-tertiary);
+            margin-right: var(--spacing-md);
+        }
+        
+        .tag-input input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 15px;
+        }
+        
+        .location-input {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid var(--divider-color);
+        }
+        
+        .location-input i {
+            color: var(--text-tertiary);
+            margin-right: var(--spacing-md);
+        }
+        
+        .create-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+        }
+        
+        .footer-actions {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+        
+        .footer-action {
+            color: var(--text-secondary);
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="iphone-container">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-bar-left">
+                <div class="status-bar-time">9:41</div>
+            </div>
+            <div class="status-bar-right">
+                <div class="status-bar-signal">
+                    <i class="fas fa-signal"></i>
+                </div>
+                <div class="status-bar-wifi">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="status-bar-battery">
+                    <i class="fas fa-battery-full"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <div class="nav-left">
+                <div class="btn btn-text nav-back">取消</div>
+            </div>
+            <div class="nav-title">创建笔记</div>
+            <div class="nav-right">
+                <div class="btn btn-text">发布</div>
+            </div>
+        </div>
+        
+        <!-- Create Tabs -->
+        <div class="create-tabs">
+            <div class="create-tab active">图文</div>
+            <div class="create-tab">视频</div>
+        </div>
+        
+        <!-- App Content -->
+        <div class="app-content">
+            <div class="p-md">
+                <!-- Photo Grid -->
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="https://source.unsplash.com/random/300x300/?cafe" alt="Photo">
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://source.unsplash.com/random/300x300/?food" alt="Photo">
+                    </div>
+                    <div class="photo-item">
+                        <img src="https://source.unsplash.com/random/300x300/?coffee" alt="Photo">
+                    </div>
+                    <div class="photo-item add-photo">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="photo-item add-photo">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="photo-item add-photo">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Text Editor -->
+                <div class="editor-section">
+                    <textarea class="editor-input" placeholder="这一刻的想法..."></textarea>
+                </div>
+                
+                <!-- Tags -->
+                <div class="tag-input">
+                    <i class="fas fa-hashtag"></i>
+                    <input type="text" placeholder="添加话题" value="#遇见好食光 #咖啡店">
+                </div>
+                
+                <!-- Location -->
+                <div class="location-input">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" placeholder="添加地点">
+                </div>
+                
+                <!-- Product Link -->
+                <div class="location-input">
+                    <i class="fas fa-shopping-bag"></i>
+                    <input type="text" placeholder="添加商品链接">
+                </div>
+                
+                <!-- Create Footer -->
+                <div class="create-footer">
+                    <div class="footer-actions">
+                        <div class="footer-action">
+                            <i class="far fa-smile"></i>
+                        </div>
+                        <div class="footer-action">
+                            <i class="fas fa-at"></i>
+                        </div>
+                        <div class="footer-action">
+                            <i class="fas fa-link"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-tertiary text-sm">公开可见</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/navigation.js"></script>
+</body>
+</html>

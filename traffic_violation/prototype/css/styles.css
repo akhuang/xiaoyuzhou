@@ -22,6 +22,14 @@ body {
     vertical-align: top;
 }
 
+/* iPad 设备样式 */
+.device.ipad {
+    width: 820px;
+    height: 1180px;
+    border-radius: 25px;
+    border: 12px solid #1a1a1a;
+}
+
 /* 状态栏样式 */
 .status-bar {
     height: 44px;
@@ -48,6 +56,11 @@ body {
     z-index: 1;
 }
 
+/* iPad状态栏样式 */
+.device.ipad .status-bar .notch {
+    display: none;
+}
+
 .status-bar .time {
     font-weight: bold;
     z-index: 2;
@@ -71,6 +84,11 @@ body {
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.05);
 }
 
+/* iPad 导航栏样式 */
+.device.ipad .tab-bar {
+    height: 100px;
+}
+
 .tab {
     flex: 1;
     display: flex;
@@ -91,11 +109,26 @@ body {
     margin-bottom: 4px;
 }
 
+/* iPad Tab样式 */
+.device.ipad .tab i {
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+.device.ipad .tab {
+    font-size: 14px;
+}
+
 /* 应用内容区域 */
 .app-content {
     height: calc(932px - 44px - 83px);
     overflow: hidden;
     position: relative;
+}
+
+/* iPad 内容区域样式 */
+.device.ipad .app-content {
+    height: calc(1180px - 44px - 100px);
 }
 
 /* 抓拍界面样式 */
@@ -122,6 +155,11 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* iPad 预览容器样式 */
+.device.ipad .preview-container {
+    height: 120px;
+}
+
 .preview {
     flex: 1;
     padding: 10px;
@@ -134,6 +172,11 @@ body {
     object-fit: cover;
     border-radius: 8px;
     border: 2px solid transparent;
+}
+
+/* iPad 预览图样式 */
+.device.ipad .preview-img {
+    height: 100px;
 }
 
 .preview-img.active {
@@ -156,6 +199,13 @@ body {
     z-index: 10;
 }
 
+/* iPad 拍照按钮样式 */
+.device.ipad .capture-btn {
+    width: 90px;
+    height: 90px;
+    bottom: 150px;
+}
+
 .capture-btn::before {
     content: '';
     width: 60px;
@@ -163,6 +213,12 @@ body {
     background-color: white;
     border-radius: 50%;
     border: 2px solid #ccc;
+}
+
+/* iPad 拍照按钮内部样式 */
+.device.ipad .capture-btn::before {
+    width: 80px;
+    height: 80px;
 }
 
 .location-info {
@@ -183,6 +239,12 @@ body {
     text-overflow: ellipsis;
 }
 
+/* iPad 位置信息样式 */
+.device.ipad .location-info {
+    font-size: 14px;
+    padding: 8px 15px;
+}
+
 .ai-result {
     padding: 15px;
     background-color: white;
@@ -201,11 +263,22 @@ body {
     gap: 5px;
 }
 
+/* iPad AI结果标题样式 */
+.device.ipad .ai-result h3 {
+    font-size: 20px;
+}
+
 .ai-result-content {
     background-color: #f9f9f9;
     padding: 10px;
     border-radius: 8px;
     font-size: 14px;
+}
+
+/* iPad AI结果内容样式 */
+.device.ipad .ai-result-content {
+    font-size: 16px;
+    padding: 15px;
 }
 
 /* 列表界面样式 */
@@ -214,6 +287,19 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
+}
+
+/* iPad 列表布局调整 */
+.device.ipad .violation-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* iPad 卡片样式调整 */
+.device.ipad .violation-item {
+    margin-bottom: 0;
 }
 
 .list-header {
@@ -228,6 +314,15 @@ body {
     z-index: 10;
 }
 
+/* iPad 列表头部样式 */
+.device.ipad .list-header {
+    padding: 20px 25px;
+}
+
+.device.ipad .list-header h2 {
+    font-size: 28px;
+}
+
 .list-header h2 {
     margin: 0;
     font-size: 20px;
@@ -237,6 +332,11 @@ body {
 .list-actions {
     display: flex;
     gap: 15px;
+}
+
+/* iPad 操作按钮样式 */
+.device.ipad .list-actions i {
+    font-size: 24px;
 }
 
 .violation-list {
@@ -258,46 +358,116 @@ body {
     height: 120px;
 }
 
-.violation-image {
-    flex: 1;
-    object-fit: cover;
+/* iPad 违章图片高度调整 */
+.device.ipad .violation-images {
+    height: 160px;
 }
 
+.violation-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+}
+
+.violation-image > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.violation-image i {
+    margin-bottom: 8px;
+}
+
+/* iPad 违章图片样式优化 */
+.device.ipad .violation-image {
+    font-size: 16px;
+}
+
+.device.ipad .violation-image i {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+}
+
+/* 修复文字紧靠线问题 */
 .violation-details {
-    padding: 15px;
+    padding: 15px 18px; /* 增加边距，提供更多留白 */
+}
+
+/* iPad 违章详情调整 */
+.device.ipad .violation-details {
+    padding: 20px 22px;
 }
 
 .violation-location {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    align-items: flex-start; /* 改为flex-start，当文本换行时更美观 */
+    gap: 8px; /* 增加图标和文字之间的间距 */
     color: #666;
-    margin-bottom: 5px;
+    margin-bottom: 8px; /* 增加底部间距 */
     font-size: 14px;
+    line-height: 1.4; /* 增加行高，改善可读性 */
+}
+
+/* iPad 位置信息调整 */
+.device.ipad .violation-location {
+    font-size: 16px;
+    margin-bottom: 10px;
+    gap: 10px; /* iPad上使用更大的间距 */
 }
 
 .violation-time {
     color: #999;
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* 增加与下方元素的间距 */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* 添加图标和文字之间的间距 */
+}
+
+/* iPad 时间信息调整 */
+.device.ipad .violation-time {
+    font-size: 14px;
+    margin-bottom: 15px;
+    gap: 7px; /* iPad上使用更大的间距 */
 }
 
 .violation-type {
     display: inline-block;
     background-color: #f0f0f0;
-    padding: 3px 8px;
+    padding: 3px 10px; /* 增加水平内边距 */
     border-radius: 12px;
     font-size: 12px;
     color: #666;
 }
 
+/* iPad 违章类型标签调整 */
+.device.ipad .violation-type {
+    padding: 5px 12px;
+    font-size: 14px;
+}
+
 .status-tag {
     float: right;
-    padding: 3px 8px;
+    padding: 3px 10px; /* 增加水平内边距 */
     border-radius: 12px;
     font-size: 12px;
     background-color: #e1f5fe;
     color: #0288d1;
+}
+
+/* iPad 状态标签调整 */
+.device.ipad .status-tag {
+    padding: 5px 12px;
+    font-size: 14px;
 }
 
 .status-tag.pending {
@@ -319,6 +489,11 @@ body {
     border-top: 1px solid #e0e0e0;
 }
 
+/* iPad 工具栏调整 */
+.device.ipad .toolbar {
+    padding: 15px 25px;
+}
+
 .toolbar button {
     background-color: #007AFF;
     color: white;
@@ -330,6 +505,12 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+/* iPad 按钮调整 */
+.device.ipad .toolbar button {
+    padding: 12px 25px;
+    font-size: 16px;
 }
 
 .toolbar button.secondary {
@@ -376,4 +557,139 @@ body {
 
 .mt-2 {
     margin-top: 10px;
+}
+
+/* iPad 布局专用样式 */
+@media (min-width: 768px) {
+    /* iPad 分屏模式样式 - 通用布局修改 */
+    .ipad-split-layout {
+        display: flex;
+        height: 100%;
+    }
+    
+    .ipad-split-layout .left-panel {
+        width: 40%;
+        border-right: 1px solid #e0e0e0;
+        overflow-y: auto;
+    }
+    
+    .ipad-split-layout .right-panel {
+        width: 60%;
+        overflow-y: auto;
+    }
+    
+    /* iPad 详情弹出框调整 */
+    .device.ipad .detail-modal .modal-content {
+        max-width: 600px;
+    }
+    
+    /* 统计信息在iPad上的布局调整 */
+    .device.ipad .stats-container {
+        margin: 20px;
+    }
+    
+    .device.ipad .stats-value {
+        font-size: 28px;
+    }
+    
+    .device.ipad .stats-label {
+        font-size: 14px;
+    }
+    
+    /* iPad 筛选选项调整 */
+    .device.ipad .filter-options {
+        padding: 10px 0;
+    }
+    
+    .device.ipad .filter-option {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* 详情模态框样式 */
+.detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90%;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    padding: 15px;
+}
+
+.modal-footer {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.modal-btn {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.modal-btn.primary {
+    background-color: #007AFF;
+    color: white;
+}
+
+.modal-btn.secondary {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+/* 选中项样式 */
+.violation-item.active {
+    border: 2px solid #007AFF;
+    box-shadow: 0 4px 12px rgba(0, 120, 255, 0.15);
+}
+
+/* iPad 特有样式补充 */
+.device.ipad .modal-content {
+    max-width: 550px;
+}
+
+.device.ipad .modal-header h3 {
+    font-size: 22px;
+}
+
+.device.ipad .modal-body {
+    font-size: 16px;
+    padding: 20px;
+}
+
+.device.ipad .modal-footer .modal-btn {
+    padding: 10px 20px;
+    font-size: 16px;
 }
